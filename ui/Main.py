@@ -1,0 +1,91 @@
+# -*- coding: utf-8 -*-
+
+# Form implementation generated from reading ui file 'Main.ui'
+#
+# Created by: PyQt5 UI code generator 5.9.2
+#
+# WARNING! All changes made in this file will be lost!
+
+from PyQt5 import QtCore, QtGui, QtWidgets
+
+class Ui_MainForm(object):
+    def setupUi(self, MainForm):
+        MainForm.setObjectName("MainForm")
+        MainForm.resize(1200, 755)
+        self.horizontalLayoutWidget = QtWidgets.QWidget(MainForm)
+        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(40, 520, 1091, 171))
+        self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
+        self.horizontalLayoutForButtons = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
+        self.horizontalLayoutForButtons.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayoutForButtons.setObjectName("horizontalLayoutForButtons")
+        self.favoriteQuestionButton = QtWidgets.QPushButton(self.horizontalLayoutWidget)
+        self.favoriteQuestionButton.setStyleSheet("font: 75 10pt \"Consolas\" rgb(241, 255, 235);")
+        self.favoriteQuestionButton.setObjectName("favoriteQuestionButton")
+        self.horizontalLayoutForButtons.addWidget(self.favoriteQuestionButton)
+        self.reciteQuestionButton = QtWidgets.QPushButton(self.horizontalLayoutWidget)
+        self.reciteQuestionButton.setStyleSheet("font: 75 10pt \"Consolas\" rgb(241, 255, 235);")
+        self.reciteQuestionButton.setObjectName("reciteQuestionButton")
+        self.horizontalLayoutForButtons.addWidget(self.reciteQuestionButton)
+        self.historyQuestionButton = QtWidgets.QPushButton(self.horizontalLayoutWidget)
+        self.historyQuestionButton.setStyleSheet("font: 75 10pt \"Consolas\" rgb(241, 255, 235);")
+        self.historyQuestionButton.setObjectName("historyQuestionButton")
+        self.horizontalLayoutForButtons.addWidget(self.historyQuestionButton)
+        self.wrongQuestionButton = QtWidgets.QPushButton(self.horizontalLayoutWidget)
+        self.wrongQuestionButton.setStyleSheet("font: 75 10pt \"Consolas\" rgb(241, 255, 235);")
+        self.wrongQuestionButton.setObjectName("wrongQuestionButton")
+        self.horizontalLayoutForButtons.addWidget(self.wrongQuestionButton)
+        self.openFileButton = QtWidgets.QPushButton(MainForm)
+        self.openFileButton.setGeometry(QtCore.QRect(50, 70, 151, 51))
+        self.openFileButton.setStyleSheet("font: 75 10pt \"Consolas\" rgb(241, 255, 235);")
+        self.openFileButton.setObjectName("openFileButton")
+        self.questionTextEdit = QtWidgets.QTextEdit(MainForm)
+        self.questionTextEdit.setGeometry(QtCore.QRect(240, 60, 821, 431))
+        self.questionTextEdit.setStyleSheet("font: 75 10pt \"Consolas\" rgb(241, 255, 235);")
+        self.questionTextEdit.setObjectName("questionTextEdit")
+        self.searchButton = QtWidgets.QPushButton(MainForm)
+        self.searchButton.setGeometry(QtCore.QRect(50, 310, 151, 51))
+        self.searchButton.setStyleSheet("font: 75 10pt \"Consolas\" rgb(241, 255, 235);")
+        self.searchButton.setObjectName("searchButton")
+        self.clearButton = QtWidgets.QPushButton(MainForm)
+        self.clearButton.setGeometry(QtCore.QRect(50, 190, 151, 51))
+        self.clearButton.setStyleSheet("font: 75 10pt \"Consolas\" rgb(241, 255, 235);")
+        self.clearButton.setObjectName("clearButton")
+        self.quizButton = QtWidgets.QPushButton(MainForm)
+        self.quizButton.setGeometry(QtCore.QRect(50, 430, 151, 51))
+        self.quizButton.setStyleSheet("font: 75 10pt \"Consolas\" rgb(241, 255, 235);")
+        self.quizButton.setObjectName("quizButton")
+        self.logoutButton = QtWidgets.QPushButton(MainForm)
+        self.logoutButton.setGeometry(QtCore.QRect(1050, 700, 91, 41))
+        self.logoutButton.setStyleSheet("font: 75 10pt \"Consolas\" rgb(241, 255, 235);")
+        self.logoutButton.setObjectName("logoutButton")
+        self.userNamelabel = QtWidgets.QLabel(MainForm)
+        self.userNamelabel.setGeometry(QtCore.QRect(1000, 10, 191, 41))
+        self.userNamelabel.setStyleSheet("font: 9pt \"Consolas\" rgb(255, 14, 30);")
+        self.userNamelabel.setObjectName("userNamelabel")
+        self.label = QtWidgets.QLabel(MainForm)
+        self.label.setGeometry(QtCore.QRect(580, 10, 161, 41))
+        self.label.setText("")
+        self.label.setObjectName("label")
+        self.scheduleLabel = QtWidgets.QLabel(MainForm)
+        self.scheduleLabel.setGeometry(QtCore.QRect(510, 30, 301, 31))
+        self.scheduleLabel.setStyleSheet("font: 9pt \"Consolas\" rgb(255, 14, 30);")
+        self.scheduleLabel.setObjectName("scheduleLabel")
+
+        self.retranslateUi(MainForm)
+        QtCore.QMetaObject.connectSlotsByName(MainForm)
+
+    def retranslateUi(self, MainForm):
+        _translate = QtCore.QCoreApplication.translate
+        MainForm.setWindowTitle(_translate("MainForm", "小航搜题"))
+        self.favoriteQuestionButton.setText(_translate("MainForm", "我喜欢的问题"))
+        self.reciteQuestionButton.setText(_translate("MainForm", "我的背题集"))
+        self.historyQuestionButton.setText(_translate("MainForm", "我的历史记录"))
+        self.wrongQuestionButton.setText(_translate("MainForm", "我的错题本"))
+        self.openFileButton.setText(_translate("MainForm", "上传搜索内容"))
+        self.searchButton.setText(_translate("MainForm", "开始搜索"))
+        self.clearButton.setText(_translate("MainForm", "清空搜索内容"))
+        self.quizButton.setText(_translate("MainForm", "小测验"))
+        self.logoutButton.setText(_translate("MainForm", "登出"))
+        self.userNamelabel.setText(_translate("MainForm", "用户名：蛤蛤蛤蛤蛤蛤"))
+        self.scheduleLabel.setText(_translate("MainForm", "正在识别文件，请耐心等待。。。"))
+

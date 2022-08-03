@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainForm</class>
+ <widget class="QWidget" name="MainForm">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1200</width>
+    <height>755</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>小航搜题</string>
+  </property>
+  <widget class="QWidget" name="horizontalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>520</y>
+     <width>1091</width>
+     <height>171</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayoutForButtons">
+    <item>
+     <widget class="QPushButton" name="favoriteQuestionButton">
+      <property name="styleSheet">
+       <string notr="true">font: 75 10pt &quot;Consolas&quot; rgb(241, 255, 235);</string>
+      </property>
+      <property name="text">
+       <string>我喜欢的问题</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="reciteQuestionButton">
+      <property name="styleSheet">
+       <string notr="true">font: 75 10pt &quot;Consolas&quot; rgb(241, 255, 235);</string>
+      </property>
+      <property name="text">
+       <string>我的背题集</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="historyQuestionButton">
+      <property name="styleSheet">
+       <string notr="true">font: 75 10pt &quot;Consolas&quot; rgb(241, 255, 235);</string>
+      </property>
+      <property name="text">
+       <string>我的历史记录</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="wrongQuestionButton">
+      <property name="styleSheet">
+       <string notr="true">font: 75 10pt &quot;Consolas&quot; rgb(241, 255, 235);</string>
+      </property>
+      <property name="text">
+       <string>我的错题本</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QPushButton" name="openFileButton">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>70</y>
+     <width>151</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 10pt &quot;Consolas&quot; rgb(241, 255, 235);</string>
+   </property>
+   <property name="text">
+    <string>上传搜索内容</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="questionTextEdit">
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>60</y>
+     <width>821</width>
+     <height>431</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 10pt &quot;Consolas&quot; rgb(241, 255, 235);</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="searchButton">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>310</y>
+     <width>151</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 10pt &quot;Consolas&quot; rgb(241, 255, 235);</string>
+   </property>
+   <property name="text">
+    <string>开始搜索</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="clearButton">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>190</y>
+     <width>151</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 10pt &quot;Consolas&quot; rgb(241, 255, 235);</string>
+   </property>
+   <property name="text">
+    <string>清空搜索内容</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="quizButton">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>430</y>
+     <width>151</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 10pt &quot;Consolas&quot; rgb(241, 255, 235);</string>
+   </property>
+   <property name="text">
+    <string>小测验</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="logoutButton">
+   <property name="geometry">
+    <rect>
+     <x>1050</x>
+     <y>700</y>
+     <width>91</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 10pt &quot;Consolas&quot; rgb(241, 255, 235);</string>
+   </property>
+   <property name="text">
+    <string>登出</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="userNamelabel">
+   <property name="geometry">
+    <rect>
+     <x>1000</x>
+     <y>10</y>
+     <width>191</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 9pt &quot;Consolas&quot; rgb(255, 14, 30);</string>
+   </property>
+   <property name="text">
+    <string>用户名：蛤蛤蛤蛤蛤蛤</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>580</x>
+     <y>10</y>
+     <width>161</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="scheduleLabel">
+   <property name="geometry">
+    <rect>
+     <x>510</x>
+     <y>30</y>
+     <width>301</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 9pt &quot;Consolas&quot; rgb(255, 14, 30);</string>
+   </property>
+   <property name="text">
+    <string>正在识别文件，请耐心等待。。。</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
