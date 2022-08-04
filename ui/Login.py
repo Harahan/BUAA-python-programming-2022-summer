@@ -5,12 +5,8 @@
 # Created by: PyQt5 UI code generator 5.9.2
 #
 # WARNING! All changes made in this file will be lost!
-import sys
 
-from PyQt5 import QtCore, QtWidgets
-from qt_material import apply_stylesheet
-from PyQt5.Qt import *
-
+from PyQt5 import QtCore, QtGui, QtWidgets
 
 class Ui_LoginForm(object):
     def setupUi(self, LoginForm):
@@ -55,7 +51,7 @@ class Ui_LoginForm(object):
 
     def retranslateUi(self, LoginForm):
         _translate = QtCore.QCoreApplication.translate
-        LoginForm.setWindowTitle(_translate("LoginForm", "登陆小航搜题"))
+        LoginForm.setWindowTitle(_translate("LoginForm", "欢迎登陆小航搜题"))
         self.signInButton.setText(_translate("LoginForm", "登陆"))
         self.signUpButton.setText(_translate("LoginForm", "注册"))
         self.userNameLable.setText(_translate("LoginForm", "用户名："))
@@ -63,16 +59,3 @@ class Ui_LoginForm(object):
         self.userNameTipsLabel.setText(_translate("LoginForm", "该用户名不存在!"))
         self.userPasswordTipsLabel.setText(_translate("LoginForm", "密码错误!"))
 
-
-if __name__ == "__main__":
-    class MyMainForm(QMainWindow, Ui_LoginForm):
-        def __init__(self, parent=None):
-            super(MyMainForm, self).__init__(parent)
-            self.setupUi(self)
-    
-    
-    app = QApplication(sys.argv)
-    apply_stylesheet(app, theme='dark_teal.xml')
-    myWin = MyMainForm()
-    myWin.show()
-    sys.exit(app.exec_())

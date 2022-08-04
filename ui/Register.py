@@ -6,8 +6,7 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt5 import QtCore, QtWidgets
-from PyQt5.Qt import *
+from PyQt5 import QtCore, QtGui, QtWidgets
 
 class Ui_RegisterForm(object):
     def setupUi(self, RegisterForm):
@@ -51,7 +50,7 @@ class Ui_RegisterForm(object):
 
     def retranslateUi(self, RegisterForm):
         _translate = QtCore.QCoreApplication.translate
-        RegisterForm.setWindowTitle(_translate("RegisterForm", "注册小航搜题"))
+        RegisterForm.setWindowTitle(_translate("RegisterForm", "欢迎注册小航搜题"))
         self.userPasswordLable.setText(_translate("RegisterForm", "用户密码："))
         self.userNameLable.setText(_translate("RegisterForm", "用户名："))
         self.confirmButton.setText(_translate("RegisterForm", "确认"))

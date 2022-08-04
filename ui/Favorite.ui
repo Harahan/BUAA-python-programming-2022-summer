@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>HistoryForm</class>
- <widget class="QWidget" name="HistoryForm">
+ <class>FavoriteForm</class>
+ <widget class="QWidget" name="FavoriteForm">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,25 +11,25 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>小航搜题-我的历史记录</string>
+   <string>小航搜题-我喜欢的问题</string>
   </property>
   <widget class="QWidget" name="horizontalLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>40</x>
+     <x>290</x>
      <y>520</y>
-     <width>1091</width>
+     <width>721</width>
      <height>171</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayoutForButtons">
     <item>
-     <widget class="QPushButton" name="addToFavoriteQuestionButton">
+     <widget class="QPushButton" name="addToWrongQuestionButton">
       <property name="styleSheet">
        <string notr="true">font: 75 10pt &quot;Consolas&quot; rgb(241, 255, 235);</string>
       </property>
       <property name="text">
-       <string>加入我喜欢的问题</string>
+       <string>加入我的错题本</string>
       </property>
      </widget>
     </item>
@@ -43,33 +43,7 @@
       </property>
      </widget>
     </item>
-    <item>
-     <widget class="QPushButton" name="addToWrongQuestionButton">
-      <property name="styleSheet">
-       <string notr="true">font: 75 10pt &quot;Consolas&quot; rgb(241, 255, 235);</string>
-      </property>
-      <property name="text">
-       <string>加入我的错题本</string>
-      </property>
-     </widget>
-    </item>
    </layout>
-  </widget>
-  <widget class="QPushButton" name="historyAnalyzeButton">
-   <property name="geometry">
-    <rect>
-     <x>50</x>
-     <y>70</y>
-     <width>151</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">font: 75 10pt &quot;Consolas&quot; rgb(241, 255, 235);</string>
-   </property>
-   <property name="text">
-    <string>历史答案分析</string>
-   </property>
   </widget>
   <widget class="QTextEdit" name="questionTextEdit">
    <property name="geometry">
@@ -94,8 +68,8 @@ p, li { white-space: pre-wrap; }
   <widget class="QPushButton" name="nextQuestionButton">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>310</y>
+     <x>40</x>
+     <y>250</y>
      <width>151</width>
      <height>51</height>
     </rect>
@@ -104,14 +78,14 @@ p, li { white-space: pre-wrap; }
     <string notr="true">font: 75 10pt &quot;Consolas&quot; rgb(241, 255, 235);</string>
    </property>
    <property name="text">
-    <string>下一条历史</string>
+    <string>下一题</string>
    </property>
   </widget>
   <widget class="QPushButton" name="clearCurrentQuestionButton">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>190</y>
+     <x>40</x>
+     <y>70</y>
      <width>151</width>
      <height>51</height>
     </rect>
@@ -120,7 +94,7 @@ p, li { white-space: pre-wrap; }
     <string notr="true">font: 75 10pt &quot;Consolas&quot; rgb(241, 255, 235);</string>
    </property>
    <property name="text">
-    <string>删除该条历史</string>
+    <string>不再喜欢该题</string>
    </property>
   </widget>
   <widget class="QPushButton" name="preQuestionButton">
@@ -136,7 +110,7 @@ p, li { white-space: pre-wrap; }
     <string notr="true">font: 75 10pt &quot;Consolas&quot; rgb(241, 255, 235);</string>
    </property>
    <property name="text">
-    <string>上一条历史</string>
+    <string>上一题</string>
    </property>
   </widget>
   <widget class="QPushButton" name="goBackButton">
@@ -236,12 +210,12 @@ p, li { white-space: pre-wrap; }
     <string>题目：</string>
    </property>
   </widget>
-  <widget class="QLabel" name="answerLabel">
+  <widget class="QLabel" name="rightAnswerLabel">
    <property name="geometry">
     <rect>
      <x>240</x>
      <y>270</y>
-     <width>81</width>
+     <width>111</width>
      <height>18</height>
     </rect>
    </property>

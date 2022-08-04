@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>HistoryForm</class>
- <widget class="QWidget" name="HistoryForm">
+ <class>WrongForm</class>
+ <widget class="QWidget" name="WrongForm">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,14 +11,14 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>小航搜题-我的历史记录</string>
+   <string>小航搜题-我的错题本</string>
   </property>
   <widget class="QWidget" name="horizontalLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>40</x>
+     <x>290</x>
      <y>520</y>
-     <width>1091</width>
+     <width>721</width>
      <height>171</height>
     </rect>
    </property>
@@ -43,33 +43,7 @@
       </property>
      </widget>
     </item>
-    <item>
-     <widget class="QPushButton" name="addToWrongQuestionButton">
-      <property name="styleSheet">
-       <string notr="true">font: 75 10pt &quot;Consolas&quot; rgb(241, 255, 235);</string>
-      </property>
-      <property name="text">
-       <string>加入我的错题本</string>
-      </property>
-     </widget>
-    </item>
    </layout>
-  </widget>
-  <widget class="QPushButton" name="historyAnalyzeButton">
-   <property name="geometry">
-    <rect>
-     <x>50</x>
-     <y>70</y>
-     <width>151</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">font: 75 10pt &quot;Consolas&quot; rgb(241, 255, 235);</string>
-   </property>
-   <property name="text">
-    <string>历史答案分析</string>
-   </property>
   </widget>
   <widget class="QTextEdit" name="questionTextEdit">
    <property name="geometry">
@@ -77,7 +51,7 @@
      <x>240</x>
      <y>60</y>
      <width>821</width>
-     <height>201</height>
+     <height>171</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -94,8 +68,8 @@ p, li { white-space: pre-wrap; }
   <widget class="QPushButton" name="nextQuestionButton">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>310</y>
+     <x>40</x>
+     <y>250</y>
      <width>151</width>
      <height>51</height>
     </rect>
@@ -104,14 +78,14 @@ p, li { white-space: pre-wrap; }
     <string notr="true">font: 75 10pt &quot;Consolas&quot; rgb(241, 255, 235);</string>
    </property>
    <property name="text">
-    <string>下一条历史</string>
+    <string>下一条错题</string>
    </property>
   </widget>
   <widget class="QPushButton" name="clearCurrentQuestionButton">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>190</y>
+     <x>40</x>
+     <y>70</y>
      <width>151</width>
      <height>51</height>
     </rect>
@@ -120,7 +94,7 @@ p, li { white-space: pre-wrap; }
     <string notr="true">font: 75 10pt &quot;Consolas&quot; rgb(241, 255, 235);</string>
    </property>
    <property name="text">
-    <string>删除该条历史</string>
+    <string>删除该条错题</string>
    </property>
   </widget>
   <widget class="QPushButton" name="preQuestionButton">
@@ -136,7 +110,7 @@ p, li { white-space: pre-wrap; }
     <string notr="true">font: 75 10pt &quot;Consolas&quot; rgb(241, 255, 235);</string>
    </property>
    <property name="text">
-    <string>上一条历史</string>
+    <string>上一条错题</string>
    </property>
   </widget>
   <widget class="QPushButton" name="goBackButton">
@@ -200,13 +174,13 @@ p, li { white-space: pre-wrap; }
     <string>已经到底了，没有别的记录了。。。</string>
    </property>
   </widget>
-  <widget class="QTextEdit" name="answerTextEdit">
+  <widget class="QTextEdit" name="rightAnswerTextEdit">
    <property name="geometry">
     <rect>
      <x>240</x>
-     <y>290</y>
-     <width>821</width>
-     <height>201</height>
+     <y>260</y>
+     <width>401</width>
+     <height>231</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -236,12 +210,12 @@ p, li { white-space: pre-wrap; }
     <string>题目：</string>
    </property>
   </widget>
-  <widget class="QLabel" name="answerLabel">
+  <widget class="QLabel" name="rightAnswerLabel">
    <property name="geometry">
     <rect>
      <x>240</x>
-     <y>270</y>
-     <width>81</width>
+     <y>240</y>
+     <width>111</width>
      <height>18</height>
     </rect>
    </property>
@@ -249,7 +223,7 @@ p, li { white-space: pre-wrap; }
     <string notr="true">font: 75 10pt &quot;Consolas&quot; rgb(241, 255, 235);</string>
    </property>
    <property name="text">
-    <string>答案：</string>
+    <string>正确答案：</string>
    </property>
   </widget>
   <widget class="QLabel" name="currentScheduleLabel">
@@ -311,6 +285,42 @@ p, li { white-space: pre-wrap; }
    </property>
    <property name="text">
     <string/>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="wrongAnswerTextEdit">
+   <property name="geometry">
+    <rect>
+     <x>660</x>
+     <y>260</y>
+     <width>401</width>
+     <height>231</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 10pt &quot;Consolas&quot; rgb(241, 255, 235);</string>
+   </property>
+   <property name="html">
+    <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Consolas'; font-size:10pt; font-weight:72; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="wrongAnswerLabel">
+   <property name="geometry">
+    <rect>
+     <x>660</x>
+     <y>240</y>
+     <width>141</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 10pt &quot;Consolas&quot; rgb(241, 255, 235);</string>
+   </property>
+   <property name="text">
+    <string>我的错误答案：</string>
    </property>
   </widget>
  </widget>

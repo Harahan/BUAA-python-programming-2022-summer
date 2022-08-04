@@ -55,7 +55,7 @@ class Ui_MainForm(object):
         self.quizButton.setStyleSheet("font: 75 10pt \"Consolas\" rgb(241, 255, 235);")
         self.quizButton.setObjectName("quizButton")
         self.logoutButton = QtWidgets.QPushButton(MainForm)
-        self.logoutButton.setGeometry(QtCore.QRect(1050, 700, 91, 41))
+        self.logoutButton.setGeometry(QtCore.QRect(950, 700, 91, 41))
         self.logoutButton.setStyleSheet("font: 75 10pt \"Consolas\" rgb(241, 255, 235);")
         self.logoutButton.setObjectName("logoutButton")
         self.userNamelabel = QtWidgets.QLabel(MainForm)
@@ -70,13 +70,21 @@ class Ui_MainForm(object):
         self.scheduleLabel.setGeometry(QtCore.QRect(510, 30, 301, 31))
         self.scheduleLabel.setStyleSheet("font: 9pt \"Consolas\" rgb(255, 14, 30);")
         self.scheduleLabel.setObjectName("scheduleLabel")
+        self.contributeButton = QtWidgets.QPushButton(MainForm)
+        self.contributeButton.setGeometry(QtCore.QRect(40, 700, 131, 41))
+        self.contributeButton.setStyleSheet("font: 75 10pt \"Consolas\" rgb(241, 255, 235);")
+        self.contributeButton.setObjectName("contributeButton")
+        self.writeOffButton = QtWidgets.QPushButton(MainForm)
+        self.writeOffButton.setGeometry(QtCore.QRect(1050, 700, 91, 41))
+        self.writeOffButton.setStyleSheet("font: 75 10pt \"Consolas\" rgb(241, 255, 235);")
+        self.writeOffButton.setObjectName("writeOffButton")
 
         self.retranslateUi(MainForm)
         QtCore.QMetaObject.connectSlotsByName(MainForm)
 
     def retranslateUi(self, MainForm):
         _translate = QtCore.QCoreApplication.translate
-        MainForm.setWindowTitle(_translate("MainForm", "小航搜题"))
+        MainForm.setWindowTitle(_translate("MainForm", "小航搜题-主界面"))
         self.favoriteQuestionButton.setText(_translate("MainForm", "我喜欢的问题"))
         self.reciteQuestionButton.setText(_translate("MainForm", "我的背题集"))
         self.historyQuestionButton.setText(_translate("MainForm", "我的历史记录"))
@@ -88,4 +96,6 @@ class Ui_MainForm(object):
         self.logoutButton.setText(_translate("MainForm", "登出"))
         self.userNamelabel.setText(_translate("MainForm", "用户名：蛤蛤蛤蛤蛤蛤"))
         self.scheduleLabel.setText(_translate("MainForm", "正在识别文件，请耐心等待。。。"))
+        self.contributeButton.setText(_translate("MainForm", "贡献题目"))
+        self.writeOffButton.setText(_translate("MainForm", "注销"))
 

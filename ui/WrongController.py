@@ -1,33 +1,35 @@
 from PyQt5 import QtWidgets, QtGui
 from PyQt5.Qt import *
-from ui.History import Ui_HistoryForm
+from ui.Wrong import Ui_WrongForm
 import re
 
 
-class History_controller(QtWidgets.QMainWindow):
+class Wrong_controller(QtWidgets.QMainWindow):
 	goBackToMainSignal = pyqtSignal(int)
 	digit = re.compile(r'\d+')
 	
 	def __init__(self, userName: str, userPassword: str):
-		super(History_controller, self).__init__()
-		self.ui = Ui_HistoryForm()
+		super(Wrong_controller, self).__init__()
+		self.ui = Ui_WrongForm()
 		self.ui.setupUi(self)
 		self.userName = userName
 		self.userPassword = userPassword
-		self.historyQuestionAndAnswer = getHistoryQuestionAndAnswer(userName, userPassword)
+		self.wrongQuestionAndAnswer = getWrongQuestionAndAnswer(userName, userPassword)
 		self.currentPage = 1
 		self.setup_control()
 		
 	def _checkNumber(self, number: int):
-		maxNumber = len(self.historyQuestionAndAnswer)
+		maxNumber = len(self.wrongQuestionAndAnswer)
 		if number > maxNumber:
 			self.ui.scheduleTipsLabel.setText("已经到底了，什么也没有了。。。")
 			self.ui.questionTextEdit.setStyleSheet("background-image:url(../img/notFound.png)")
-			self.ui.answerTextEdit.setStyleSheet("background-image:url(../img/notFound.png)")
+			self.ui.rightAnswerTextEdit.setStyleSheet("background-image:url(../img/notFound.png)")
+			self.ui.wrongAnswerTextEdit.setStyleSheet("background-image:url(../img/notFound.png)")
 		elif number <= 0:
-			self.ui.scheduleTipsLabel.setText("没有更近的记录了。。。")
+			self.ui.scheduleTipsLabel.setText("没有更近的错题了。。。")
 			self.ui.questionTextEdit.setStyleSheet("background-image:url(../img/notFound.png)")
-			self.ui.answerTextEdit.setStyleSheet("background-image:url(../img/notFound.png)")
+			self.ui.rightAnswerTextEdit.setStyleSheet("background-image:url(../img/notFound.png)")
+			self.ui.wrongAnswerTextEdit.setStyleSheet("background-image:url(../img/notFound.png)")
 		else:
 			return True
 		return False
@@ -35,23 +37,28 @@ class History_controller(QtWidgets.QMainWindow):
 	def _showQuestionAndAnswer(self, number: int):
 		self.ui.scheduleTipsLabel.clear()
 		self.ui.questionTextEdit.clear()
-		self.ui.answerTextEdit.clear()
+		self.ui.rightAnswerTextEdit.clear()
+		self.ui.wrongAnswerTextEdit.clear()
 		self.ui.questionTextEdit.setStyleSheet("background-image:url(); font: 75 10pt \"Consolas\" rgb(241, 255, 235);")
-		self.ui.answerTextEdit.setStyleSheet("background-image:url(); font: 75 10pt \"Consolas\" rgb(241, 255, 235);")
+		self.ui.rightAnswerTextEdit.setStyleSheet("background-image:url(); font: 75 10pt \"Consolas\" rgb(241, 255, 235);")
+		self.ui.wrongAnswerTextEdit.setStyleSheet("background-image:url(); font: 75 10pt \"Consolas\" rgb(241, 255, 235);")
 		self.currentPage = number
 		self.ui.questionNumberLineEdit.setText(str(number))
 		if self._checkNumber(number):
-			self.ui.questionTextEdit.setText(self.historyQuestionAndAnswer[number - 1][0])
-			self.ui.answerTextEdit.setText(self.historyQuestionAndAnswer[number - 1][1])
-	
+			self.ui.questionTextEdit.setText(self.wrongQuestionAndAnswer[number - 1][0])
+			self.ui.rightAnswerTextEdit.setText(self.wrongQuestionAndAnswer[number - 1][1])
+			if self.wrongQuestionAndAnswer[number - 1][2] != '':
+				self.ui.wrongAnswerTextEdit.setText(self.wrongQuestionAndAnswer[number - 1][2])
+			else:
+				self.ui.wrongAnswerTextEdit.setText("您好像没有提交过该题的答案呀。。。")
+			
 	def _initParameter(self):
-		# self.ui.questionTextEdit.setStyleSheet("background-image:url(../img/notFound.png)")
 		self._showQuestionAndAnswer(1)
-		self.ui.totQuestionLabel.setText('/' + str(len(self.historyQuestionAndAnswer)))
-		# self.ui.questionNumberLineEdit.clear()
+		self.ui.totQuestionLabel.setText('/' + str(len(self.wrongQuestionAndAnswer)))
 		self.ui.scheduleTipsLabel.clear()
 		self.ui.questionTextEdit.setReadOnly(True)
-		self.ui.answerTextEdit.setReadOnly(True)
+		self.ui.rightAnswerTextEdit.setReadOnly(True)
+		self.ui.wrongAnswerTextEdit.setReadOnly(True)
 		self.setWindowFlags(Qt.WindowCloseButtonHint)  # 隐藏标题
 		self.setWindowIcon(QtGui.QIcon("../img/放大镜.jpg"))
 		self.ui.changeQuestionButton.setIcon(QIcon("../img/rightArrow.jpg"))
@@ -60,22 +67,17 @@ class History_controller(QtWidgets.QMainWindow):
 		
 	def setup_control(self):
 		self._initParameter()
-		self.ui.historyAnalyzeButton.clicked.connect(self.historyAnalyzeButtonClicked)
 		self.ui.clearCurrentQuestionButton.clicked.connect(self.clearCurrentQuestionButtonClicked)
 		self.ui.nextQuestionButton.clicked.connect(self.nextQuestionButtonClicked)
 		self.ui.preQuestionButton.clicked.connect(self.preQuestionButtonClicked)
 		self.ui.addToFavoriteQuestionButton.clicked.connect(self.addToFavoriteQuestionButtonClicked)
 		self.ui.addToReciteQuestionButton.clicked.connect(self.addToReciteQuestionButtonClicked)
-		self.ui.addToWrongQuestionButton.clicked.connect(self.addToWrongQuestionButtonClicked)
 		self.ui.goBackButton.clicked.connect(self.goBackButtonClicked)
 		self.ui.changeQuestionButton.clicked.connect(self.changeQuestionButtonClicked)
-	
-	def historyAnalyzeButtonClicked(self):  # TODO
-		pass
-	
+
 	def clearCurrentQuestionButtonClicked(self):
 		if self._checkNumber(self.currentPage):
-			if clearCurrentHistoryQuestion(self.historyQuestionAndAnswer[self.currentPage - 1]):
+			if clearCurrentWrongQuestion(self.wrongQuestionAndAnswer[self.currentPage - 1]):
 				self.ui.scheduleTipsLabel.setText("清除成功，下一次进来它就消失了！")
 			else:
 				self.ui.scheduleTipsLabel.setText("该题在刚才已被清除！")
@@ -88,27 +90,20 @@ class History_controller(QtWidgets.QMainWindow):
 	
 	def addToFavoriteQuestionButtonClicked(self):
 		if self._checkNumber(self.currentPage):
-			if addToFavoriteQuestion(self.historyQuestionAndAnswer[self.currentPage - 1]):
+			if addToFavoriteQuestion(self.wrongQuestionAndAnswer[self.currentPage - 1]):
 				self.ui.scheduleTipsLabel.setText("已成功加入我喜欢的问题！")
 			else:
 				self.ui.scheduleTipsLabel.setText("该题在我喜欢的问题中已存在！")
 	
 	def addToReciteQuestionButtonClicked(self):
 		if self._checkNumber(self.currentPage):
-			if addToReciteQuestion(self.historyQuestionAndAnswer[self.currentPage - 1]):
+			if addToReciteQuestion(self.wrongQuestionAndAnswer[self.currentPage - 1]):
 				self.ui.scheduleTipsLabel.setText("已成功加入我的背题集！")
 			else:
 				self.ui.scheduleTipsLabel.setText("该题在我的背题集中已存在！")
 	
-	def addToWrongQuestionButtonClicked(self):
-		if self._checkNumber(self.currentPage):
-			if addToWrongQuestion(self.historyQuestionAndAnswer[self.currentPage - 1]):
-				self.ui.scheduleTipsLabel.setText("已成功加入我的错题本！")
-			else:
-				self.ui.scheduleTipsLabel.setText("该题在我的错题本中已存在！")
-	
 	def goBackButtonClicked(self):
-		self.goBackToMainSignal.emit(0)
+		self.goBackToMainSignal.emit(1)
 		self._initParameter()
 	
 	def changeQuestionButtonClicked(self):
@@ -118,13 +113,13 @@ class History_controller(QtWidgets.QMainWindow):
 			self._showQuestionAndAnswer(number)
 	
 	def showEvent(self, a0: QtGui.QShowEvent):
-		self.historyQuestionAndAnswer = getHistoryQuestionAndAnswer(self.userName, self.userPassword)
+		self.wrongQuestionAndAnswer = getWrongQuestionAndAnswer(self.userName, self.userPassword)
 		a0.accept()
 	
-
+	
 # ----- 要提供的函数 ----- # TODO
-def getHistoryQuestionAndAnswer(userName: str, userPassword: str) -> [(str, str)]:  # question, answer
-	return [('1 + 1 = ', '2'), ('x**2 + 2 * x = -1, x = ', '-1'), ('buaa is:', 'holy shit')]
+def getWrongQuestionAndAnswer(userName: str, userPassword: str) -> [(str, str, str)]:  # question, answer
+	return [('1 + 1 = ', '2', '3'), ('x**2 + 2 * x = -1, x = ', '-1', ''), ('buaa is:', 'holy shit', 'a fucking ass hole')]
 
 
 def addToFavoriteQuestion(questionAndAnswer: tuple) -> bool:
@@ -135,11 +130,5 @@ def addToReciteQuestion(questionAndAnswer: tuple) -> bool:
 	return True
 
 
-def addToWrongQuestion(questionAndAnswer: tuple) -> bool:
+def clearCurrentWrongQuestion(questionAndAnswer: tuple) -> bool:
 	return True
-
-
-def clearCurrentHistoryQuestion(questionAndAnswer: tuple) -> bool:
-	return True
-
-

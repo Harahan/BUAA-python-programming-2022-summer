@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>登陆小航搜题</string>
+   <string>欢迎登陆小航搜题</string>
   </property>
   <widget class="QLineEdit" name="userNameInput">
    <property name="geometry">

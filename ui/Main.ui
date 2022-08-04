@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>小航搜题</string>
+   <string>小航搜题-主界面</string>
   </property>
   <widget class="QWidget" name="horizontalLayoutWidget">
    <property name="geometry">
@@ -145,7 +145,7 @@
   <widget class="QPushButton" name="logoutButton">
    <property name="geometry">
     <rect>
-     <x>1050</x>
+     <x>950</x>
      <y>700</y>
      <width>91</width>
      <height>41</height>
@@ -201,6 +201,38 @@
    </property>
    <property name="text">
     <string>正在识别文件，请耐心等待。。。</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="contributeButton">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>700</y>
+     <width>131</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 10pt &quot;Consolas&quot; rgb(241, 255, 235);</string>
+   </property>
+   <property name="text">
+    <string>贡献题目</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="writeOffButton">
+   <property name="geometry">
+    <rect>
+     <x>1050</x>
+     <y>700</y>
+     <width>91</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 10pt &quot;Consolas&quot; rgb(241, 255, 235);</string>
+   </property>
+   <property name="text">
+    <string>注销</string>
    </property>
   </widget>
  </widget>
