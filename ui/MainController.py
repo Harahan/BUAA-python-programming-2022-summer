@@ -32,7 +32,7 @@ class Main_controller(QtWidgets.QMainWindow):
 		self.favorite_ui = Favorite_controller(userName, userPassword)
 		self.recite_ui = Recite_controller(userName, userPassword)
 		self.searchingResult_ui = SearchingResult_controller(userName, userPassword, '')
-		self.writeOff_ui = WriteOffController()
+		self.writeOff_ui = WriteOffController(userName, userPassword)
 		self.setup_control()
 		
 	def _reshow(self, sel: int):
@@ -46,6 +46,8 @@ class Main_controller(QtWidgets.QMainWindow):
 			self.recite_ui.hide()
 		elif sel == 4:
 			self.searchingResult_ui.hide()
+		elif sel == 5:
+			self.writeOff_ui.hide()
 		self.show()
 		
 	def _hide(self, sel: int):
@@ -60,6 +62,8 @@ class Main_controller(QtWidgets.QMainWindow):
 			self.recite_ui.show()
 		elif sel == 4:
 			self.searchingResult_ui.show()
+		elif sel == 5:
+			self.writeOff_ui.show()
 		
 	def setup_control(self):
 		self.ui.scheduleLabel.clear()
@@ -72,6 +76,7 @@ class Main_controller(QtWidgets.QMainWindow):
 		self.favorite_ui.goBackToMainSignal.connect(self._reshow)
 		self.recite_ui.goBackToMainSignal.connect(self._reshow)
 		self.searchingResult_ui.goBackToMainSignal.connect(self._reshow)
+		self.writeOff_ui.goBackToMainSignal.connect(self._reshow)
 		self.writeOff_ui.goBackToLoginSignal.connect(self.logoutButtonClicked)
 		
 		self.ui.favoriteQuestionButton.clicked.connect(self.favoriteQuestionButtonClicked)
@@ -148,9 +153,7 @@ class Main_controller(QtWidgets.QMainWindow):
 		pass
 	
 	def writeOffButtonClicked(self):
-		writeOffUser(self.userName, self.userPassword)
-		self.hide()
-		self.writeOff_ui.show()
+		self._hide(5)
 	
 	
 # ----- 补全的代码 ----- # TODO
@@ -161,6 +164,3 @@ def getFileContent(filePath: str) -> str:  # jpg, png, txt, pdf, jpeg
 def getAnswer(question: str) -> str:   # 可以返回一个空的字符串，如果没有
 	return ""
 
-
-def writeOffUser(userName: str, userPassword: str) -> None:
-	pass
