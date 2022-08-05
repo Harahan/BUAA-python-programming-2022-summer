@@ -14,7 +14,7 @@ class History_controller(QtWidgets.QMainWindow):
 		self.ui.setupUi(self)
 		self.userName = userName
 		self.userPassword = userPassword
-		self.historyQuestionAndAnswer = getHistoryQuestionAndAnswer(userName, userPassword)
+		self.historyQuestionAndAnswer = getHistoryQuestionAndAnswer()
 		self.currentPage = 1
 		self.setup_control()
 		
@@ -118,20 +118,20 @@ class History_controller(QtWidgets.QMainWindow):
 			self._showQuestionAndAnswer(number)
 	
 	def showEvent(self, a0: QtGui.QShowEvent):
-		self.historyQuestionAndAnswer = getHistoryQuestionAndAnswer(self.userName, self.userPassword)
+		self.historyQuestionAndAnswer = getHistoryQuestionAndAnswer()
 		a0.accept()
 	
 
 # ----- 要提供的函数 ----- # TODO
-def getHistoryQuestionAndAnswer(userName: str, userPassword: str) -> [(str, str)]:  # question, answer
+def getHistoryQuestionAndAnswer() -> [(str, str)]:  # question, answer
 	return [('1 + 1 = ', '2'), ('x**2 + 2 * x = -1, x = ', '-1'), ('buaa is:', 'holy shit')]
 
 
-def addToFavoriteQuestion(questionAndAnswer: tuple) -> bool:
+def addToFavoriteQuestion(questionAndAnswer: (str, str)) -> bool:
 	return True
 
 
-def addToReciteQuestion(questionAndAnswer: tuple) -> bool:
+def addToReciteQuestion(questionAndAnswer: (str, str)) -> bool:
 	return True
 
 

@@ -14,7 +14,7 @@ class Recite_controller(QtWidgets.QMainWindow):
 		self.ui.setupUi(self)
 		self.userName = userName
 		self.userPassword = userPassword
-		self.reciteQuestionAndAnswer = getReciteQuestionAndAnswer(userName, userPassword)
+		self.reciteQuestionAndAnswer = getReciteQuestionAndAnswer()
 		self.currentPage = 1
 		self.setup_control()
 		
@@ -104,22 +104,22 @@ class Recite_controller(QtWidgets.QMainWindow):
 			self._showQuestionAndAnswer(number)
 	
 	def showEvent(self, a0: QtGui.QShowEvent):
-		self.reciteQuestionAndAnswer = getReciteQuestionAndAnswer(self.userName, self.userPassword)
+		self.reciteQuestionAndAnswer = getReciteQuestionAndAnswer()
 		a0.accept()
 
 
 # ----- 要提供的函数 ----- # TODO
-def getReciteQuestionAndAnswer(userName: str, userPassword: str) -> [(str, str)]:  # question, answer
+def getReciteQuestionAndAnswer() -> [(str, str)]:  # question, answer
 	return [('1 + 1 = ', '2'), ('x**2 + 2 * x = -1, x = ', '-1'), ('buaa is:', 'holy shit')]
 
 
-def addToWrongQuestion(questionAndAnswer: tuple) -> bool:
+def addToWrongQuestion(questionAndAnswer: (str, str)) -> bool:
 	return True
 
 
-def addToFavoriteQuestion(questionAndAnswer: tuple) -> bool:
+def addToFavoriteQuestion(questionAndAnswer: (str, str)) -> bool:
 	return True
 
 
-def clearCurrentReciteQuestion(questionAndAnswer: tuple) -> bool:
+def clearCurrentReciteQuestion(questionAndAnswer: (str, str)) -> bool:
 	return True

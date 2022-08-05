@@ -75,15 +75,15 @@ class SearchingResult_controller(QtWidgets.QMainWindow):
 
 
 # ----- 要提供的函数 ----- # TODO
-def addToFavoriteQuestion(questionAndAnswer: tuple) -> bool:
+def addToFavoriteQuestion(questionAndAnswer: (str, str)) -> bool:
 	return True
 
 
-def addToReciteQuestion(questionAndAnswer: tuple) -> bool:
+def addToReciteQuestion(questionAndAnswer: (str, str)) -> bool:
 	return True
 
 
-def addToWrongQuestion(questionAndAnswer: tuple) -> bool:
+def addToWrongQuestion(questionAndAnswer: (str, str)) -> bool:
 	return True
 
 

@@ -11,6 +11,7 @@ from FavoriteController import Favorite_controller
 from ReciteController import Recite_controller
 from SearchingResultController import SearchingResult_controller
 from WriteOffController import WriteOffController
+from ContributeController import Contribute_controller
 
 _debug = True
 
@@ -33,6 +34,7 @@ class Main_controller(QtWidgets.QMainWindow):
 		self.recite_ui = Recite_controller(userName, userPassword)
 		self.searchingResult_ui = SearchingResult_controller(userName, userPassword, '')
 		self.writeOff_ui = WriteOffController(userName, userPassword)
+		self.contribute_ui = Contribute_controller(userName, userPassword)
 		self.setup_control()
 		
 	def _reshow(self, sel: int):
@@ -48,6 +50,8 @@ class Main_controller(QtWidgets.QMainWindow):
 			self.searchingResult_ui.hide()
 		elif sel == 5:
 			self.writeOff_ui.hide()
+		elif sel == 6:
+			self.contribute_ui.hide()
 		self.show()
 		
 	def _hide(self, sel: int):
@@ -64,6 +68,8 @@ class Main_controller(QtWidgets.QMainWindow):
 			self.searchingResult_ui.show()
 		elif sel == 5:
 			self.writeOff_ui.show()
+		elif sel == 6:
+			self.contribute_ui.show()
 		
 	def setup_control(self):
 		self.ui.scheduleLabel.clear()
@@ -78,6 +84,7 @@ class Main_controller(QtWidgets.QMainWindow):
 		self.searchingResult_ui.goBackToMainSignal.connect(self._reshow)
 		self.writeOff_ui.goBackToMainSignal.connect(self._reshow)
 		self.writeOff_ui.goBackToLoginSignal.connect(self.logoutButtonClicked)
+		self.contribute_ui.goBackToMainSignal.connect(self._reshow)
 		
 		self.ui.favoriteQuestionButton.clicked.connect(self.favoriteQuestionButtonClicked)
 		self.ui.reciteQuestionButton.clicked.connect(self.reciteQuestionButtonClicked)
@@ -133,7 +140,9 @@ class Main_controller(QtWidgets.QMainWindow):
 		if re.match(self.empty, question):
 			self.ui.scheduleLabel.setText("搜索内容不应为空！")
 		else:
+			self.ui.scheduleLabel.setText("正在搜索中，请耐心等待。。。")
 			self.searchingResult_ui.questionAndAnswer = (question, getAnswer(question))
+			self.ui.scheduleLabel.clear()
 			self._hide(4)
 	
 	def clearButtonClicked(self):
@@ -148,9 +157,9 @@ class Main_controller(QtWidgets.QMainWindow):
 		self.ui.scheduleLabel.clear()
 		self.logOutSignal.emit()
 		
-	def contributeButtonClicked(self):  # TODO
+	def contributeButtonClicked(self):
 		self.ui.scheduleLabel.clear()
-		pass
+		self._hide(6)
 	
 	def writeOffButtonClicked(self):
 		self._hide(5)

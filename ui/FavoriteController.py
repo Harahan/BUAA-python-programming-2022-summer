@@ -14,7 +14,7 @@ class Favorite_controller(QtWidgets.QMainWindow):
 		self.ui.setupUi(self)
 		self.userName = userName
 		self.userPassword = userPassword
-		self.favoriteQuestionAndAnswer = getFavoriteQuestionAndAnswer(userName, userPassword)
+		self.favoriteQuestionAndAnswer = getFavoriteQuestionAndAnswer()
 		self.currentPage = 1
 		self.setup_control()
 		
@@ -104,22 +104,22 @@ class Favorite_controller(QtWidgets.QMainWindow):
 			self._showQuestionAndAnswer(number)
 	
 	def showEvent(self, a0: QtGui.QShowEvent):
-		self.favoriteQuestionAndAnswer = getFavoriteQuestionAndAnswer(self.userName, self.userPassword)
+		self.favoriteQuestionAndAnswer = getFavoriteQuestionAndAnswer()
 		a0.accept()
 
 
 # ----- 要提供的函数 ----- # TODO
-def getFavoriteQuestionAndAnswer(userName: str, userPassword: str) -> [(str, str, str)]:  # question, answer
-	return [('1 + 1 = ', '2', '3'), ('x**2 + 2 * x = -1, x = ', '-1', ''), ('buaa is:', 'holy shit', 'a fucking ass hole')]
+def getFavoriteQuestionAndAnswer() -> [(str, str)]:  # question, right answer
+	return [('1 + 1 = ', '2'), ('x**2 + 2 * x = -1, x = ', '-1'), ('buaa is:', 'holy shit')]
 
 
-def addToWrongQuestion(questionAndAnswer: tuple) -> bool:
+def addToWrongQuestion(questionAndAnswer: (str, str)) -> bool:  # Q, right A
 	return True
 
 
-def addToReciteQuestion(questionAndAnswer: tuple) -> bool:
+def addToReciteQuestion(questionAndAnswer: (str, str)) -> bool:
 	return True
 
 
-def clearCurrentFavoriteQuestion(questionAndAnswer: tuple) -> bool:
+def clearCurrentFavoriteQuestion(questionAndAnswer: (str, str)) -> bool:
 	return True

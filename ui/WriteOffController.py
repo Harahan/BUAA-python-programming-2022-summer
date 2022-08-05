@@ -24,7 +24,7 @@ class WriteOffController(QtWidgets.QMainWindow):
 		self.ui.confirmButton.clicked.connect(self.confirmButtonClicked)
 		
 	def confirmButtonClicked(self):
-		writeOffUser(self.userName, self.userPassword)
+		writeOffUser()
 		self.goBackToLoginSignal.emit()
 		self.flag = True
 		self.close()
@@ -42,6 +42,6 @@ class WriteOffController(QtWidgets.QMainWindow):
 		
 	
 # ----- 补全的代码 ----- # TODO
-def writeOffUser(userName: str, userPassword: str) -> None:
+def writeOffUser() -> None:
 	pass
 	
