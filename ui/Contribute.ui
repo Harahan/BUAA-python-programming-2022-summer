@@ -196,6 +196,38 @@
     <string>感谢您的无私奉献！</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="clearQuestionButton">
+   <property name="geometry">
+    <rect>
+     <x>280</x>
+     <y>680</y>
+     <width>161</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 10pt &quot;Consolas&quot; rgb(241, 255, 235);</string>
+   </property>
+   <property name="text">
+    <string>清空题目</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="clearAnswerButton">
+   <property name="geometry">
+    <rect>
+     <x>760</x>
+     <y>680</y>
+     <width>161</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 10pt &quot;Consolas&quot; rgb(241, 255, 235);</string>
+   </property>
+   <property name="text">
+    <string>清空答案</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

@@ -39,6 +39,8 @@ class Contribute_controller(QtWidgets.QMainWindow):
 		self.ui.openFileForAnswerButton.clicked.connect(self.openFileForAnswerButtonClicked)
 		self.ui.confirmButton.clicked.connect(self.confirmButtonClicked)
 		self.ui.goBackButton.clicked.connect(self.goBackButtonClicked)
+		self.ui.clearQuestionButton.clicked.connect(self.clearQuestionButtonClicked)
+		self.ui.clearAnswerButton.clicked.connect(self.clearAnswerButtonClicked)
 		
 	def openFileForQuestionButtonClicked(self):
 		filePath, fileType = QFileDialog.getOpenFileName(self, "Open file", "./")
@@ -89,6 +91,14 @@ class Contribute_controller(QtWidgets.QMainWindow):
 	def goBackButtonClicked(self):
 		self.goBackToMainSignal.emit(6)
 		self._clearLabelAndText()
+		
+	def clearQuestionButtonClicked(self):
+		self.ui.questionTipsLabel.clear()
+		self.ui.questionTextEdit.clear()
+		
+	def clearAnswerButtonClicked(self):
+		self.ui.answerTipsLabel.clear()
+		self.ui.answerTextEdit.clear()
 	
 	
 # ----- 补全的代码 ----- # TODO

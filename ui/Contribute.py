@@ -60,6 +60,14 @@ class Ui_ContributeForm(object):
         self.thanksTipsLabel.setGeometry(QtCore.QRect(530, 580, 431, 31))
         self.thanksTipsLabel.setStyleSheet("font: 9pt \"Consolas\" rgb(255, 14, 30);")
         self.thanksTipsLabel.setObjectName("thanksTipsLabel")
+        self.clearQuestionButton = QtWidgets.QPushButton(ContributeForm)
+        self.clearQuestionButton.setGeometry(QtCore.QRect(280, 680, 161, 41))
+        self.clearQuestionButton.setStyleSheet("font: 75 10pt \"Consolas\" rgb(241, 255, 235);")
+        self.clearQuestionButton.setObjectName("clearQuestionButton")
+        self.clearAnswerButton = QtWidgets.QPushButton(ContributeForm)
+        self.clearAnswerButton.setGeometry(QtCore.QRect(760, 680, 161, 41))
+        self.clearAnswerButton.setStyleSheet("font: 75 10pt \"Consolas\" rgb(241, 255, 235);")
+        self.clearAnswerButton.setObjectName("clearAnswerButton")
 
         self.retranslateUi(ContributeForm)
         QtCore.QMetaObject.connectSlotsByName(ContributeForm)
@@ -76,4 +84,6 @@ class Ui_ContributeForm(object):
         self.questionLabel.setText(_translate("ContributeForm", "题目类型"))
         self.confirmButton.setText(_translate("ContributeForm", "确认"))
         self.thanksTipsLabel.setText(_translate("ContributeForm", "感谢您的无私奉献！"))
+        self.clearQuestionButton.setText(_translate("ContributeForm", "清空题目"))
+        self.clearAnswerButton.setText(_translate("ContributeForm", "清空答案"))
 
