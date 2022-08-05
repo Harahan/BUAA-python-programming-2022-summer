@@ -33,7 +33,7 @@ class Contribute_controller(QtWidgets.QMainWindow):
 		self._clearLabelAndText()
 		self.setWindowFlags(Qt.WindowCloseButtonHint)  # 隐藏标题
 		self.ui.userNamelabel.setText("用户名：" + self.userName)
-		self.ui.questionTypeComboBox.addItems(['客观题', '主观题'])
+		self.ui.questionTypeComboBox.addItems(['', '客观题', '主观题'])
 		self.ui.questionTypeComboBox.setEditable(False)
 		self.ui.openFileForQuestionButton.clicked.connect(self.openFileForQuestionButtonClicked)
 		self.ui.openFileForAnswerButton.clicked.connect(self.openFileForAnswerButtonClicked)
@@ -99,6 +99,10 @@ class Contribute_controller(QtWidgets.QMainWindow):
 	def clearAnswerButtonClicked(self):
 		self.ui.answerTipsLabel.clear()
 		self.ui.answerTextEdit.clear()
+		
+	def showEvent(self, a0: QtGui.QShowEvent):
+		self.ui.questionTypeComboBox.setCurrentText('')
+		a0.accept()
 	
 	
 # ----- 补全的代码 ----- # TODO

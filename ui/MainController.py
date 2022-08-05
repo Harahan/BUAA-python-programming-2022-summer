@@ -151,7 +151,6 @@ class Main_controller(QtWidgets.QMainWindow):
 	
 	def quizButtonClicked(self):  # TODO
 		self.ui.scheduleLabel.clear()
-		pass
 	
 	def logoutButtonClicked(self):
 		self.ui.scheduleLabel.clear()

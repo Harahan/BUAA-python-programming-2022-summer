@@ -64,7 +64,7 @@ class SearchingResult_controller(QtWidgets.QMainWindow):
 		self.ui.questionTextEdit.setText(self.questionAndAnswer[0])
 		if self.questionAndAnswer[1] != '':
 			self.ui.answerTextEdit.setText(self.questionAndAnswer[1])
-			addToHistoryQuestion(self.questionAndAnswer)
+			addToSearchingHistoryQuestion(self.questionAndAnswer)
 		else:
 			self.ui.answerTextEdit.setStyleSheet("background-image:url(../img/notFound.png)")
 			self.ui.addToFavoriteQuestionButton.setDisabled(True)
@@ -87,7 +87,7 @@ def addToWrongQuestion(questionAndAnswer: (str, str)) -> bool:
 	return True
 
 
-def addToHistoryQuestion(questionAndAnswer: tuple) -> bool:
+def addToSearchingHistoryQuestion(questionAndAnswer: (str, str)) -> bool:
 	return True
 
 

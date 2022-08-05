@@ -1,6 +1,7 @@
 from PyQt5 import QtWidgets, QtGui
 from PyQt5.Qt import *
 from ui.History import Ui_HistoryForm
+from AnalyseController import Analyse_controller
 import re
 
 
@@ -10,6 +11,8 @@ class History_controller(QtWidgets.QMainWindow):
 	
 	def __init__(self, userName: str, userPassword: str):
 		super(History_controller, self).__init__()
+		self.historyAnalyze_ui = None
+		self.historyAnalyze_ui: Analyse_controller
 		self.ui = Ui_HistoryForm()
 		self.ui.setupUi(self)
 		self.userName = userName
@@ -58,6 +61,11 @@ class History_controller(QtWidgets.QMainWindow):
 		self.ui.changeQuestionButton.setIconSize(QSize(15, 15))
 		self.ui.userNamelabel.setText("用户名：" + self.userName)
 		
+	def _reshow(self):
+		self.historyAnalyze_ui: Analyse_controller
+		self.historyAnalyze_ui.close()
+		self.show()
+		
 	def setup_control(self):
 		self._initParameter()
 		self.ui.historyAnalyzeButton.clicked.connect(self.historyAnalyzeButtonClicked)
@@ -70,12 +78,18 @@ class History_controller(QtWidgets.QMainWindow):
 		self.ui.goBackButton.clicked.connect(self.goBackButtonClicked)
 		self.ui.changeQuestionButton.clicked.connect(self.changeQuestionButtonClicked)
 	
-	def historyAnalyzeButtonClicked(self):  # TODO
-		pass
+	def historyAnalyzeButtonClicked(self):
+		if self._checkNumber(self.currentPage):
+			question = self.historyQuestionAndAnswer[self.currentPage - 1][0]
+			answer = self.historyQuestionAndAnswer[self.currentPage - 1][1]
+			self.historyAnalyze_ui = Analyse_controller(self.userName, self.userPassword, question, answer)
+			self.historyAnalyze_ui.goBackToHistorySignal.connect(self._reshow)
+			self.hide()
+			self.historyAnalyze_ui.show()
 	
 	def clearCurrentQuestionButtonClicked(self):
 		if self._checkNumber(self.currentPage):
-			if clearCurrentHistoryQuestion(self.historyQuestionAndAnswer[self.currentPage - 1]):
+			if clearCurrentSearchingHistoryQuestion(self.historyQuestionAndAnswer[self.currentPage - 1]):
 				self.ui.scheduleTipsLabel.setText("清除成功，下一次进来它就消失了！")
 			else:
 				self.ui.scheduleTipsLabel.setText("该题在刚才已被清除！")
@@ -135,11 +149,11 @@ def addToReciteQuestion(questionAndAnswer: (str, str)) -> bool:
 	return True
 
 
-def addToWrongQuestion(questionAndAnswer: tuple) -> bool:
+def addToWrongQuestion(questionAndAnswer: (str, str)) -> bool:
 	return True
 
 
-def clearCurrentHistoryQuestion(questionAndAnswer: tuple) -> bool:
+def clearCurrentSearchingHistoryQuestion(questionAndAnswer: (str, str)) -> bool:
 	return True
 
 
