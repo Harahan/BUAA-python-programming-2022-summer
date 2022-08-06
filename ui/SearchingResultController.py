@@ -87,7 +87,7 @@ def addToWrongQuestion(questionAndAnswer: (str, str)) -> bool:
 	return True
 
 
-def addToSearchingHistoryQuestion(questionAndAnswer: (str, str)) -> bool:
+def addToSearchHistoryQuestion(questionAndAnswer: (str, str)) -> bool:
 	return True
 
 
