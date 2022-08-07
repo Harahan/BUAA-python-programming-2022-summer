@@ -6,7 +6,7 @@ from ui.ObjectiveItemQuiz import Ui_ObjectiveItemQuizForm
 class ObjectiveItemQuiz_controller(QtWidgets.QMainWindow):
 	changeSignal = pyqtSignal(int, int)
 	goToResultSignal = pyqtSignal(int)
-	resultSignal = pyqtSignal(int, int)
+	resultSignal = pyqtSignal(float, int)
 	
 	def __init__(self, userName: str, userPassword: str, question: str, choices: [str], answer: int, n: int):
 		super(ObjectiveItemQuiz_controller, self).__init__()
@@ -77,7 +77,7 @@ class ObjectiveItemQuiz_controller(QtWidgets.QMainWindow):
 			mrs = 0
 			for i in range(4):
 				if self.answer & (1 << i) == 0 and ans & (1 << i) != 0:
-					self.ui.scoreLabel.setText('得分：0/10')
+					# self.ui.scoreLabel.setText('得分：0/10')
 					mrs = 0
 					break
 				if self.answer & (1 << i) != 0 and ans & (1 << i) != 0:
