@@ -15,6 +15,7 @@ from ui.ContributeController import Contribute_controller
 from ui.PreForQuizController import PreForQuiz_controller
 from ui.QuizResultController import QuizResult_controller
 from ui.TerisResultController import TetrisResult_controller
+from OCR_and_PDF.fileProcess import getContent
 
 _debug = True
 
@@ -185,7 +186,8 @@ class Main_controller(QtWidgets.QMainWindow):
 	
 # ----- 补全的代码 ----- # TODO
 def getFileContent(filePath: str) -> str:  # jpg, png, txt, pdf, jpeg
-	return "fuck BUAA!!!"
+
+	return getContent(filePath)
 
 
 def getAnswer(question: str) -> str:   # 可以返回一个空的字符串，如果没有

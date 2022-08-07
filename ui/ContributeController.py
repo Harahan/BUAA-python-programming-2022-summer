@@ -3,6 +3,7 @@ from PyQt5.Qt import *
 from PyQt5.QtWidgets import QFileDialog
 from PyQt5.QtCore import pyqtSignal
 from ui.Contribute import Ui_ContributeForm
+from OCR_and_PDF.fileProcess import getContent
 import re
 
 _debug = False
@@ -107,8 +108,8 @@ class Contribute_controller(QtWidgets.QMainWindow):
 	
 # ----- 补全的代码 ----- # TODO
 def getFileContent(filePath: str) -> str:  # jpg, png, txt, pdf, jpeg
-	return "fuck BUAA!!!"
 
+	return getContent(filePath)
 
 def addToQuestionBank(questionAndAnswer: (str, str, str)) -> bool:  # Q, A, type
 	return True
