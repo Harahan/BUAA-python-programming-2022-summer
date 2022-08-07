@@ -49,9 +49,7 @@ class Board(QFrame):
 
 	def __init__(self, parent):
 		super().__init__(parent)
-		self.BoardWidth = 10
-		self.BoardHeight = 22
-		self.Speed = 300  # 300 280 ...
+		Board.Speed = 300  # 300 280 ...
 		self.initBoard()
 
 	def initBoard(self):
