@@ -23,6 +23,9 @@ class TetrisResult_controller(QtWidgets.QMainWindow):
 		self.setWindowIcon(QtGui.QIcon("../img/放大镜.jpg"))
 		self.ui.userNamelabel.setText("用户名：" + self.userName)
 		self.ui.label.clear()
+		self.ui.lineEdit.setReadOnly(True)
+		self.ui.lineEdit_2.setReadOnly(True)
+		self.ui.lineEdit_3.setReadOnly(True)
 		self.ui.againButton.clicked.connect(self.againButtonClicked)
 		self.ui.goBackButton.clicked.connect(self.goBackButtonClicked)
 		
