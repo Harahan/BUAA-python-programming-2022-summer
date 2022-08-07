@@ -134,10 +134,10 @@ class PreForQuiz_controller(QtWidgets.QMainWindow):
 		self.x = []
 		for i in range(len(q)):
 			if len(q[i]) == 3:
-				self.o += 1
+				self.s += 1
 				sub = SubjectiveItemQuiz_controller(self.userName, self.userPassword, q[i][1], q[i][2], i)
 			else:
-				self.s += 1
+				self.o += 1
 				sub = ObjectiveItemQuiz_controller(self.userName, self.userPassword, q[i][1], q[i][2], q[i][3], i)
 			sub.changeSignal.connect(self._changeWindows)
 			sub.resultSignal.connect(self._result)
