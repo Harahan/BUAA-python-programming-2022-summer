@@ -1,4 +1,4 @@
-from WriteOff import Ui_WriteOffForm
+from ui.WriteOff import Ui_WriteOffForm
 from PyQt5 import QtWidgets, QtGui
 from PyQt5.Qt import *
 

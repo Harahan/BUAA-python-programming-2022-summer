@@ -77,7 +77,7 @@ class Ui_ObjectiveItemQuizForm(object):
         self.DradioButton.setText("")
         self.DradioButton.setObjectName("DradioButton")
         self.scoreLabel = QtWidgets.QLabel(ObjectiveItemQuizForm)
-        self.scoreLabel.setGeometry(QtCore.QRect(960, 600, 131, 41))
+        self.scoreLabel.setGeometry(QtCore.QRect(960, 600, 171, 41))
         self.scoreLabel.setStyleSheet("font: 75 10pt \"Consolas\" rgb(241, 255, 235);")
         self.scoreLabel.setObjectName("scoreLabel")
         self.answerLabel = QtWidgets.QLabel(ObjectiveItemQuizForm)

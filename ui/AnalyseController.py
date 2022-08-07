@@ -3,7 +3,7 @@ import os
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.Qt import *
 from matplotlib import pyplot as plt
-from Analyse import Ui_AnalyseForm
+from ui.Analyse import Ui_AnalyseForm
 import cv2
 
 

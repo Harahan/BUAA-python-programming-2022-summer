@@ -6,7 +6,7 @@ import re
 
 class Wrong_controller(QtWidgets.QMainWindow):
 	goBackToMainSignal = pyqtSignal(int)
-	digit = re.compile(r'\d+')
+	digit = re.compile(r'^\d+$')
 	
 	def __init__(self, userName: str, userPassword: str):
 		super(Wrong_controller, self).__init__()

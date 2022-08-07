@@ -6,7 +6,7 @@ import re
 
 class SearchingResult_controller(QtWidgets.QMainWindow):
 	goBackToMainSignal = pyqtSignal(int)
-	digit = re.compile(r'\d+')
+	digit = re.compile(r'^\d+$')
 	
 	def __init__(self, userName: str, userPassword: str, questionAndAnswer: (str, str)):
 		super(SearchingResult_controller, self).__init__()
@@ -64,7 +64,7 @@ class SearchingResult_controller(QtWidgets.QMainWindow):
 		self.ui.questionTextEdit.setText(self.questionAndAnswer[0])
 		if self.questionAndAnswer[1] != '':
 			self.ui.answerTextEdit.setText(self.questionAndAnswer[1])
-			addToSearchingHistoryQuestion(self.questionAndAnswer)
+			addToSearchHistoryQuestion(self.questionAndAnswer)
 		else:
 			self.ui.answerTextEdit.setStyleSheet("background-image:url(../img/notFound.png)")
 			self.ui.addToFavoriteQuestionButton.setDisabled(True)

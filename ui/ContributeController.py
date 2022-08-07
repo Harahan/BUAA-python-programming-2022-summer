@@ -2,7 +2,7 @@ from PyQt5 import QtWidgets, QtGui
 from PyQt5.Qt import *
 from PyQt5.QtWidgets import QFileDialog
 from PyQt5.QtCore import pyqtSignal
-from Contribute import Ui_ContributeForm
+from ui.Contribute import Ui_ContributeForm
 import re
 
 _debug = False

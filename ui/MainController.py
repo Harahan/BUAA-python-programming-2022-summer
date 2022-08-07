@@ -5,14 +5,16 @@ from PyQt5.Qt import *
 from PyQt5.QtWidgets import QFileDialog
 from ui.Main import Ui_MainForm
 from PyQt5.QtCore import pyqtSignal
-from HistoryController import History_controller
-from WrongController import Wrong_controller
-from FavoriteController import Favorite_controller
-from ReciteController import Recite_controller
-from SearchingResultController import SearchingResult_controller
-from WriteOffController import WriteOffController
-from ContributeController import Contribute_controller
-from PreForQuizController import PreForQuiz_controller
+from ui.HistoryController import History_controller
+from ui.WrongController import Wrong_controller
+from ui.FavoriteController import Favorite_controller
+from ui.ReciteController import Recite_controller
+from ui.SearchingResultController import SearchingResult_controller
+from ui.WriteOffController import WriteOffController
+from ui.ContributeController import Contribute_controller
+from ui.PreForQuizController import PreForQuiz_controller
+from ui.QuizResultController import QuizResult_controller
+from ui.TerisResultController import TetrisResult_controller
 
 _debug = True
 
@@ -36,7 +38,9 @@ class Main_controller(QtWidgets.QMainWindow):
 		self.searchingResult_ui = SearchingResult_controller(userName, userPassword, '')
 		self.writeOff_ui = WriteOffController(userName, userPassword)
 		self.contribute_ui = Contribute_controller(userName, userPassword)
-		self.preForQuiz_ui = PreForQuiz_controller(userName, userPassword)
+		self.tetrisResult_ui = TetrisResult_controller(userName, userPassword)
+		self.quizResult_ui = QuizResult_controller(userName, userPassword, 0, 0, 0, 0, 0, self.tetrisResult_ui)
+		self.preForQuiz_ui = PreForQuiz_controller(userName, userPassword, self.quizResult_ui)
 		self.setup_control()
 		
 	def _reshow(self, sel: int):
@@ -56,6 +60,11 @@ class Main_controller(QtWidgets.QMainWindow):
 			self.contribute_ui.hide()
 		elif sel == 7:
 			self.preForQuiz_ui.hide()
+			return
+		elif sel == 8:
+			self.quizResult_ui.hide()
+		elif sel == 9:
+			self.tetrisResult_ui.hide()
 		self.show()
 		
 	def _hide(self, sel: int):
@@ -92,6 +101,8 @@ class Main_controller(QtWidgets.QMainWindow):
 		self.writeOff_ui.goBackToLoginSignal.connect(self.logoutButtonClicked)
 		self.contribute_ui.goBackToMainSignal.connect(self._reshow)
 		self.preForQuiz_ui.goBackToMainSignal.connect(self._reshow)
+		self.quizResult_ui.goBackToMainSignal.connect(self._reshow)
+		self.tetrisResult_ui.goBackToMainSignal.connect(self._reshow)
 		
 		self.ui.favoriteQuestionButton.clicked.connect(self.favoriteQuestionButtonClicked)
 		self.ui.reciteQuestionButton.clicked.connect(self.reciteQuestionButtonClicked)

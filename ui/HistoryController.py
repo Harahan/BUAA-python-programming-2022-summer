@@ -1,13 +1,13 @@
 from PyQt5 import QtWidgets, QtGui
 from PyQt5.Qt import *
 from ui.History import Ui_HistoryForm
-from AnalyseController import Analyse_controller
+from ui.AnalyseController import Analyse_controller
 import re
 
 
 class History_controller(QtWidgets.QMainWindow):
 	goBackToMainSignal = pyqtSignal(int)
-	digit = re.compile(r'\d+')
+	digit = re.compile(r'^\d+$')
 	
 	def __init__(self, userName: str, userPassword: str):
 		super(History_controller, self).__init__()

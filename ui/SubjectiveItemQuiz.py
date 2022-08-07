@@ -45,7 +45,7 @@ class Ui_SubjectiveItemQuizForm(object):
         self.goBackButton.setStyleSheet("font: 75 10pt \"Consolas\" rgb(241, 255, 235);")
         self.goBackButton.setObjectName("goBackButton")
         self.scoreLabel = QtWidgets.QLabel(SubjectiveItemQuizForm)
-        self.scoreLabel.setGeometry(QtCore.QRect(960, 600, 131, 41))
+        self.scoreLabel.setGeometry(QtCore.QRect(960, 600, 71, 41))
         self.scoreLabel.setStyleSheet("font: 75 10pt \"Consolas\" rgb(241, 255, 235);")
         self.scoreLabel.setObjectName("scoreLabel")
         self.myAnswerLabel = QtWidgets.QLabel(SubjectiveItemQuizForm)
@@ -68,6 +68,15 @@ class Ui_SubjectiveItemQuizForm(object):
         self.writeTextEdit.setGeometry(QtCore.QRect(240, 310, 821, 261))
         self.writeTextEdit.setStyleSheet("font: 75 10pt \"Consolas\" rgb(241, 255, 235);")
         self.writeTextEdit.setObjectName("writeTextEdit")
+        self.lineEdit = QtWidgets.QLineEdit(SubjectiveItemQuizForm)
+        self.lineEdit.setGeometry(QtCore.QRect(1010, 610, 61, 25))
+        self.lineEdit.setStyleSheet("font: 75 10pt \"Consolas\" rgb(241, 255, 235);")
+        self.lineEdit.setText("")
+        self.lineEdit.setObjectName("lineEdit")
+        self.totScoreLabel = QtWidgets.QLabel(SubjectiveItemQuizForm)
+        self.totScoreLabel.setGeometry(QtCore.QRect(1080, 600, 71, 41))
+        self.totScoreLabel.setStyleSheet("font: 75 10pt \"Consolas\" rgb(241, 255, 235);")
+        self.totScoreLabel.setObjectName("totScoreLabel")
 
         self.retranslateUi(SubjectiveItemQuizForm)
         QtCore.QMetaObject.connectSlotsByName(SubjectiveItemQuizForm)
@@ -82,7 +91,7 @@ class Ui_SubjectiveItemQuizForm(object):
         self.scheduleLabel.setText(_translate("SubjectiveItemQuizForm", "正在识别文件，请耐心等待。。。"))
         self.confirmButton.setText(_translate("SubjectiveItemQuizForm", "确认提交"))
         self.goBackButton.setText(_translate("SubjectiveItemQuizForm", "返回"))
-        self.scoreLabel.setText(_translate("SubjectiveItemQuizForm", "得分：10/10"))
+        self.scoreLabel.setText(_translate("SubjectiveItemQuizForm", "得分："))
         self.myAnswerLabel.setText(_translate("SubjectiveItemQuizForm", "我的答案："))
         self.rightAnswerTextEdit.setHtml(_translate("SubjectiveItemQuizForm", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
@@ -95,4 +104,5 @@ class Ui_SubjectiveItemQuizForm(object):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Consolas\'; font-size:10pt; font-weight:72; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
+        self.totScoreLabel.setText(_translate("SubjectiveItemQuizForm", "/10"))
 

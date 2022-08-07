@@ -4,19 +4,16 @@ from ui.ObjectiveItemQuiz import Ui_ObjectiveItemQuizForm
 
 
 class ObjectiveItemQuiz_controller(QtWidgets.QMainWindow):
-	goNextSignal = pyqtSignal()
-	goPreSignal = pyqtSignal()
-	goToResultSignal = pyqtSignal()
+	changeSignal = pyqtSignal(int, int)
+	goToResultSignal = pyqtSignal(int)
+	resultSignal = pyqtSignal(int, int)
 	
-	def __init__(self, userName: str, userPassword: str, question: str, choices: [str], answer: int):
+	def __init__(self, userName: str, userPassword: str, question: str, choices: [str], answer: int, n: int):
 		super(ObjectiveItemQuiz_controller, self).__init__()
-		self.nxt = None
-		self.pre = None
 		self.ui = Ui_ObjectiveItemQuizForm()
 		self.ui.setupUi(self)
 		self.userName = userName
 		self.userPassword = userPassword
-		self.setup_control()
 		self.question = question
 		self.answer = answer
 		self.cnt = 0
@@ -27,6 +24,8 @@ class ObjectiveItemQuiz_controller(QtWidgets.QMainWindow):
 							self.ui.CQuestionTextEdit, self.ui.DQuestionTextEdit]
 		self.choicesBox = [self.ui.AradioButton, self.ui.BradioButton, self.ui.CradioButton,
 						   self.ui.DradioButton]
+		self.n = n
+		self.setup_control()
 	
 	def _check(self):
 		rt = 0
@@ -41,6 +40,7 @@ class ObjectiveItemQuiz_controller(QtWidgets.QMainWindow):
 		self.ui.choiceQuestionTextEdit.setText(self.question)
 		self.ui.choiceQuestionTextEdit.setReadOnly(True)
 		for i in range(4):
+			self.choicesBox[i].setAutoExclusive(False)
 			self.choicesEdit[i].setText(self.choices[i])
 			self.choicesEdit[i].setReadOnly(True)
 		self.ui.scheduleLabel.clear()
@@ -55,10 +55,6 @@ class ObjectiveItemQuiz_controller(QtWidgets.QMainWindow):
 	def showEvent(self, a0: QtGui.QShowEvent):
 		self.ui.scheduleLabel.clear()
 		a0.accept()
-	
-	def setPreAndNext(self, pre: int, nxt: int):
-		self.pre = pre
-		self.nxt = nxt
 	
 	def confirmButtonClicked(self):
 		self.ui.scheduleLabel.clear()
@@ -90,20 +86,25 @@ class ObjectiveItemQuiz_controller(QtWidgets.QMainWindow):
 			addToQuizHistoryQuestion(self.question, self.choices, self.answer, ans, x)
 			if x != 10:
 				addToWrongQuestion(self.question, self.choices, self.answer, ans)
+			self.resultSignal.emit(x, 0)
 			
 	def clearButtonClicked(self):
 		self.ui.scheduleLabel.clear()
 		for i in range(4):
 			self.choicesBox[i].setChecked(False)
 	
-	def goBackButtonClicked(self):  # TODO
-		pass
+	def goBackButtonClicked(self):
+		self.goToResultSignal.emit(self.n)
 	
-	def nextQuestionButtonClicked(self):  # TODO
-		pass
+	def nextQuestionButtonClicked(self):
+		self.changeSignal.emit(self.n, 1)
 	
-	def preQuestionButtonClicked(self):  # TODO
-		pass
+	def preQuestionButtonClicked(self):
+		self.changeSignal.emit(self.n, 0)
+		
+	def closeEvent(self, a0: QtGui.QCloseEvent):
+		a0.accept()
+		exit(0)
 	
 	
 # ----- 要提供的函数 ----- # TODO

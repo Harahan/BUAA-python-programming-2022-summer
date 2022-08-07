@@ -2,8 +2,8 @@ import re
 
 from PyQt5 import QtGui
 
-from MainController import Main_controller
-from RegisterController import RegisterForm_controller
+from ui.MainController import Main_controller
+from ui.RegisterController import RegisterForm_controller
 from PyQt5.Qt import *
 from ui.Login import Ui_LoginForm
 

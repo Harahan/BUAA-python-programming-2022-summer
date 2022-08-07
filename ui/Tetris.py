@@ -2,16 +2,19 @@ from PyQt5 import QtGui
 from PyQt5.QtWidgets import QMainWindow, QFrame, QDesktopWidget, QApplication
 from PyQt5.QtCore import Qt, QBasicTimer, pyqtSignal
 from PyQt5.QtGui import QPainter, QColor
-import sys, random
+from ui.TerisResultController import TetrisResult_controller
+import sys, random, time
 
 from qt_material import apply_stylesheet
 
 
 class Tetris(QMainWindow):
+	totLines = 0
 
-	def __init__(self):
+	def __init__(self, tetrisResult_ui: TetrisResult_controller):
 		super().__init__()
 		self.initUI()
+		self.tetrisResult_ui = tetrisResult_ui
 
 	def initUI(self):
 		self.tboard = Board(self)
@@ -31,6 +34,11 @@ class Tetris(QMainWindow):
 		size = self.geometry()
 		self.move((screen.width()-size.width())//2,
 			(screen.height()-size.height())//2)
+		
+	def closeEvent(self, a0: QtGui.QCloseEvent):
+		self.tetrisResult_ui.set(Tetris.totLines)
+		self.tetrisResult_ui.show()
+		a0.accept()
 
 
 class Board(QFrame):
@@ -188,6 +196,7 @@ class Board(QFrame):
 		if numFullLines > 0:
 			preNumLinesRemoved = self.numLinesRemoved
 			self.numLinesRemoved = self.numLinesRemoved + numFullLines
+			Tetris.totLines = self.numLinesRemoved
 			self.msg2Statusbar.emit(str(self.numLinesRemoved))
 			if self.Speed >= 60 + 20 * (self.numLinesRemoved - preNumLinesRemoved):
 				self.Speed -= 20 * (self.numLinesRemoved - preNumLinesRemoved)
