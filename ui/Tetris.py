@@ -342,11 +342,3 @@ class Shape(object):
 			result.setX(i, -self.y(i))
 			result.setY(i, self.x(i))
 		return result
-
-
-if __name__ == '__main__':
-
-	app = QApplication([])
-	apply_stylesheet(app, theme='dark_teal.xml')
-	tetris = Tetris()
-	sys.exit(app.exec_())
