@@ -78,7 +78,8 @@ class ObjectiveItemQuiz_controller(QtWidgets.QMainWindow):
 			for i in range(4):
 				if self.answer & (1 << i) == 0 and ans & (1 << i) != 0:
 					self.ui.scoreLabel.setText('得分：0/10')
-					return
+					mrs = 0
+					break
 				if self.answer & (1 << i) != 0 and ans & (1 << i) != 0:
 					mrs += 1
 			x = mrs / self.cnt * 10
