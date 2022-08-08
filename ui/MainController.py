@@ -61,7 +61,7 @@ class Main_controller(QtWidgets.QMainWindow):
 			self.contribute_ui.hide()
 		elif sel == 7:
 			self.preForQuiz_ui.hide()
-			return
+			# return
 		elif sel == 8:
 			self.quizResult_ui.hide()
 		elif sel == 9:
