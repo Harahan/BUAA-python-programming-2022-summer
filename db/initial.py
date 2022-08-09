@@ -6,7 +6,7 @@ def initial():
     connect = pymysql.connect(host='127.0.0.1',
                               port=3306,
                               user='root',
-                              password='hysyrf20011006',
+                              password='123456', # your mysql password
                               charset='utf8',
                               autocommit=True)
     cursor = connect.cursor()
