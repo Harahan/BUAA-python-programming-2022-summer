@@ -33,6 +33,7 @@ class PreForQuiz_controller(QtWidgets.QMainWindow):
 		self.result1 = 0
 		self.o = 0
 		self.s = 0
+		self.flag = True
 
 	def _check(self):
 		flag, tag = 0, 0
@@ -123,6 +124,7 @@ class PreForQuiz_controller(QtWidgets.QMainWindow):
 		self.result1 = 0
 		self.o = 0
 		self.s = 0
+		self.flag = True
 		for i in range(5):
 			self.choices[i].setText('0')
 		self.ui.tipslabel.clear()
@@ -130,9 +132,10 @@ class PreForQuiz_controller(QtWidgets.QMainWindow):
 		a0.accept()
 
 	def closeEvent(self, a0: QtGui.QCloseEvent):
-		self.goBackToMainSignal.emit(7)
-		self.hide()
-
+		if self.flag:
+			self.goBackToMainSignal.emit(7)
+		a0.accept()
+		
 	def quiz(self, q: [(str, str, str, int), (str, str, [str], int, int)]):
 		self.x = []
 		for i in range(len(q)):
@@ -147,11 +150,11 @@ class PreForQuiz_controller(QtWidgets.QMainWindow):
 			sub.goToResultSignal.connect(self._showResult)
 			self.x.append(sub)
 			# print(i)
+		self.flag = False
 		self.close()
 		self.x[0].show()
 
 
-# ----- 要提供的函数 ----- # TODO
 def getQuestionNumber() -> (int, int, int, int, int):
 	"""
 	:return: 历史，喜欢，错题，背题，题库的题目数目
