@@ -163,8 +163,8 @@ class Main_controller(QtWidgets.QMainWindow):
 			self.ui.scheduleLabel.setText("搜索内容不应为空！")
 		else:
 			self.ui.scheduleLabel.setText("正在搜索中，请耐心等待。。。")
-			answer = getAnswer(question)
-			self.searchingResult_ui.questionAndAnswer = (question, answer[0], answer[1])
+			result = getAnswer(question)
+			self.searchingResult_ui.questionAndAnswer = (result[0], result[1], result[2])
 			self.ui.scheduleLabel.clear()
 			self._hide(4)
 	
@@ -194,13 +194,13 @@ def getFileContent(filePath: str) -> str:  # jpg, png, txt, pdf, jpeg
 	return getContent(filePath)
 
 
-def getAnswer(question: str) -> (str, int):   # 可以返回一个空的字符串，如果没有
+def getAnswer(question: str) -> (str, str, int):   # 可以返回一个空的字符串，如果没有
 	qb = QuestionBank()
 	result = qb.search_question(question)
 	if len(result) == 0:
-		return ("", -1)
+		return ("", "", -1)
 	else:
-		return (result[1], result[9])
+		return (result[0], result[1], result[9])
 
 def userExit():
 	user = User()
