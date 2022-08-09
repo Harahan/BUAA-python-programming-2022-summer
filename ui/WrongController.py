@@ -1,5 +1,7 @@
 from PyQt5 import QtWidgets, QtGui
 from PyQt5.Qt import *
+
+from db.user import User
 from ui.Wrong import Ui_WrongForm
 import re
 
@@ -118,17 +120,23 @@ class Wrong_controller(QtWidgets.QMainWindow):
 	
 	
 # ----- 要提供的函数 ----- # TODO
-def getWrongQuestionAndAnswer() -> [(str, str, str)]:  # question, right answer, wrong answer
-	return [('1 + 1 = ', '2', '3'), ('x**2 + 2 * x = -1, x = ', '-1', ''), ('buaa is:', 'holy shit', 'a fucking ass hole')]
+def getWrongQuestionAndAnswer() -> [(str, str, str, int)]:  # question, right answer, wrong answer, question_id
+	user = User()
+	return user.get_wrong_table()
 
 
-def addToFavoriteQuestion(questionAndAnswer: (str, str)) -> bool:  # Q, right A
-	return True
+def addToFavoriteQuestion(questionAndAnswer: (str, str, str, int)) -> bool:  # Q, right A
+	user = User()
+	return user.add_like(questionAndAnswer[3])
 
 
-def addToReciteQuestion(questionAndAnswer: (str, str)) -> bool:
-	return True
+def addToReciteQuestion(questionAndAnswer: (str, str, str, int)) -> bool:
+	user = User()
+	return user.add_recite(questionAndAnswer[3])
 
 
-def clearCurrentWrongQuestion(questionAndAnswer: (str, str)) -> bool:
-	return True
+def clearCurrentWrongQuestion(questionAndAnswer: (str, str, str ,int)) -> bool:
+	user = User()
+	return user.delete_data('wrong', questionAndAnswer[3])
+
+# finish

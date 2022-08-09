@@ -1,5 +1,7 @@
 from PyQt5 import QtWidgets, QtGui
 from PyQt5.Qt import *
+
+from db.user import User
 from ui.Recite import Ui_ReciteForm
 import re
 
@@ -109,17 +111,23 @@ class Recite_controller(QtWidgets.QMainWindow):
 
 
 # ----- 要提供的函数 ----- # TODO
-def getReciteQuestionAndAnswer() -> [(str, str)]:  # question, answer
-	return [('1 + 1 = ', '2'), ('x**2 + 2 * x = -1, x = ', '-1'), ('buaa is:', 'holy shit')]
+def getReciteQuestionAndAnswer() -> [(str, str, int)]:  # question, answer, question_id
+	user = User()
+	return user.get_recite_table()
 
 
-def addToWrongQuestion(questionAndAnswer: (str, str)) -> bool:
-	return True
+def addToWrongQuestion(questionAndAnswer: (str, str, int)) -> bool:
+	user = User()
+	return user.add_wrong_no_answer(questionAndAnswer[2])
 
 
-def addToFavoriteQuestion(questionAndAnswer: (str, str)) -> bool:
-	return True
+def addToFavoriteQuestion(questionAndAnswer: (str, str, int)) -> bool:
+	user = User()
+	return user.add_like(questionAndAnswer[2])
 
 
-def clearCurrentReciteQuestion(questionAndAnswer: (str, str)) -> bool:
-	return True
+def clearCurrentReciteQuestion(questionAndAnswer: (str, str, int)) -> bool:
+	user = User()
+	return user.delete_data('recite', questionAndAnswer[2])
+
+# finish

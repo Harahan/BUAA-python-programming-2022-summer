@@ -1,3 +1,4 @@
+from db.user import User
 from ui.WriteOff import Ui_WriteOffForm
 from PyQt5 import QtWidgets, QtGui
 from PyQt5.Qt import *
@@ -43,5 +44,8 @@ class WriteOffController(QtWidgets.QMainWindow):
 	
 # ----- 补全的代码 ----- # TODO
 def writeOffUser() -> None:
-	pass
+	user = User()
+	user.destroy()
+
+# finish
 	

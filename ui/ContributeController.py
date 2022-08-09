@@ -2,9 +2,13 @@ from PyQt5 import QtWidgets, QtGui
 from PyQt5.Qt import *
 from PyQt5.QtWidgets import QFileDialog
 from PyQt5.QtCore import pyqtSignal
+
+from db.questionBank import QuestionBank
+from db.user import User
 from ui.Contribute import Ui_ContributeForm
 from OCR_and_PDF.fileProcess import getContent
 import re
+import db.question_process as checker
 
 _debug = False
 
@@ -112,4 +116,19 @@ def getFileContent(filePath: str) -> str:  # jpg, png, txt, pdf, jpeg
 	return getContent(filePath)
 
 def addToQuestionBank(questionAndAnswer: (str, str, str)) -> bool:  # Q, A, type
-	return True
+	user = User()
+	qb = QuestionBank()
+	provider = user.name
+	if questionAndAnswer[2] == '客观题':
+		if checker.format_checker(questionAndAnswer[0]) and checker.ans_process(questionAndAnswer[1]) != 0:
+			select_question = checker.process(questionAndAnswer[0])
+			answer = checker.get_ans(checker.ans_process(questionAndAnswer[1]))
+			questionAndAnswer = (questionAndAnswer[0], answer, questionAndAnswer[2])
+			qb.add_select_question(questionAndAnswer, select_question, provider)
+			return True
+		else:
+			return qb.add_question(questionAndAnswer[0:2] + ('',), provider)
+	else:
+		return qb.add_question(questionAndAnswer, provider)
+
+# finish

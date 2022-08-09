@@ -2,6 +2,8 @@ import re
 
 from PyQt5 import QtGui
 
+from db.user import User
+import db.user as u
 from ui.MainController import Main_controller
 from ui.RegisterController import RegisterForm_controller
 from PyQt5.Qt import *
@@ -100,8 +102,11 @@ class LoginForm_controller(QMainWindow):
 		
 # ----- 补全的的部分 ----- # TODO
 def checkUserNameAlive(name: str) -> bool:
-	return True
+	return u.hasname(name)
 	
 	
 def checkUserPassword(name: str, password: str) -> bool:
-	return True
+	user = User()
+	return user.login(name, password)
+
+# finish

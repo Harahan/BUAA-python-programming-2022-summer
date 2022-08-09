@@ -1,6 +1,9 @@
 from PyQt5 import QtWidgets, QtGui
 from PyQt5.Qt import *
+
+from db.user import User
 from ui.ObjectiveItemQuiz import Ui_ObjectiveItemQuizForm
+import db.question_process as process
 
 
 class ObjectiveItemQuiz_controller(QtWidgets.QMainWindow):
@@ -8,7 +11,7 @@ class ObjectiveItemQuiz_controller(QtWidgets.QMainWindow):
 	goToResultSignal = pyqtSignal(int)
 	resultSignal = pyqtSignal(float, int)
 	
-	def __init__(self, userName: str, userPassword: str, question: str, choices: [str], answer: int, n: int):
+	def __init__(self, userName: str, userPassword: str, question: str, choices: [str], answer: int, question_id: int, n: int):
 		super(ObjectiveItemQuiz_controller, self).__init__()
 		self.ui = Ui_ObjectiveItemQuizForm()
 		self.ui.setupUi(self)
@@ -16,6 +19,7 @@ class ObjectiveItemQuiz_controller(QtWidgets.QMainWindow):
 		self.userPassword = userPassword
 		self.question = question
 		self.answer = answer
+		self.question_id = question_id
 		self.cnt = 0
 		for i in range(4):
 			self.cnt += (1 if answer & (1 << i) != 0 else 0)
@@ -84,9 +88,9 @@ class ObjectiveItemQuiz_controller(QtWidgets.QMainWindow):
 					mrs += 1
 			x = mrs / self.cnt * 10
 			self.ui.scoreLabel.setText('得分：' + str(x) + '/10')
-			addToQuizHistoryQuestion(self.question, self.choices, self.answer, ans, x)
+			addToQuizHistoryQuestion(self.question, self.choices, self.answer, ans, x, self.question_id)
 			if x != 10:
-				addToWrongQuestion(self.question, self.choices, self.answer, ans)
+				addToWrongQuestion(self.question, self.choices, self.answer, ans, self.question_id)
 			self.resultSignal.emit(x, 0)
 			
 	def clearButtonClicked(self):
@@ -109,8 +113,9 @@ class ObjectiveItemQuiz_controller(QtWidgets.QMainWindow):
 	
 	
 # ----- 要提供的函数 ----- # TODO
-def addToQuizHistoryQuestion(question: str, choices: [str], answer: int, myAnswer: int, score: float):
+def addToQuizHistoryQuestion(question: str, choices: [str], answer: int, myAnswer: int, score: float, question_id):
 	"""
+	:param question_id:
 	:param question:
 	:param choices: [str, str, str, str]
 	:param answer: 1011这种二进制数，高位为D
@@ -118,8 +123,14 @@ def addToQuizHistoryQuestion(question: str, choices: [str], answer: int, myAnswe
 	:param score:
 	:return:
 	"""
-	pass
+	my_answer = process.get_ans(myAnswer)
+	user = User()
+	user.add_test_history(question_id, my_answer, score)
 
 
-def addToWrongQuestion(question: str, choices: [str], answer: int, myAnswer: int):
-	pass
+def addToWrongQuestion(question: str, choices: [str], answer: int, myAnswer: int, question_id):
+	my_answer = process.get_ans(myAnswer)
+	user = User()
+	user.add_wrong_with_answer(question_id, my_answer)
+
+# finish

@@ -3,6 +3,7 @@ import sys
 from ui.LoginController import LoginForm_controller
 from PyQt5.QtWidgets import QApplication
 from qt_material import apply_stylesheet
+import db.initial
 
 
 def runGui():
@@ -15,5 +16,6 @@ def runGui():
 
 
 if __name__ == "__main__":
+	# db.initial.destroy_database()
+	db.initial.initial()
 	runGui()
-	

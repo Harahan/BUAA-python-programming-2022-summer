@@ -4,6 +4,8 @@ from PyQt5.QtCore import pyqtSignal
 from PyQt5.QtWidgets import QMainWindow
 import re
 from ui.Register import Ui_RegisterForm
+from db.user import User
+import db.user as u
 
 _debug = False
 
@@ -48,6 +50,9 @@ class RegisterForm_controller(QMainWindow):
 		if re.match(self.empty, userPassword):
 			self.ui.userPasswordTipsLabel.setText("用户密码不能为空!")
 			flag = False
+		if flag and len(userPassword) > 12:
+			self.ui.userPasswordTipsLabel.setText("用户密码不能超过12位!")
+			flag = False
 		if flag and checkUserNameAlive(userName):
 			self.ui.userNameTipsLabel.setText("用户名已经存在!")
 		elif flag:
@@ -65,9 +70,11 @@ class RegisterForm_controller(QMainWindow):
 # ----- 补全的的部分 ----- # TODO
 def checkUserNameAlive(name: str) -> bool:
 	return False
+	return u.hasname(name)
 
 
 def signUp(name: str, password: str) -> None:
-	pass
+	user = User()
+	user.register(name, password)
 
-
+# finish

@@ -1,6 +1,8 @@
 import re
 from PyQt5 import QtWidgets, QtGui
 from PyQt5.Qt import *
+
+from db.user import User
 from ui.SubjectiveItemQuiz import Ui_SubjectiveItemQuizForm
 
 
@@ -11,7 +13,7 @@ class SubjectiveItemQuiz_controller(QtWidgets.QMainWindow):
 	empty = re.compile(r"^\s*$")
 	digit = re.compile(r'^\d+(\.\d+)?$')
 	
-	def __init__(self, userName: str, userPassword: str, question: str, answer: str, n: int):
+	def __init__(self, userName: str, userPassword: str, question: str, answer: str, question_id: int, n: int):
 		super(SubjectiveItemQuiz_controller, self).__init__()
 		self.ui = Ui_SubjectiveItemQuizForm()
 		self.ui.setupUi(self)
@@ -19,6 +21,7 @@ class SubjectiveItemQuiz_controller(QtWidgets.QMainWindow):
 		self.userPassword = userPassword
 		self.question = question
 		self.answer = answer
+		self.question_id = question_id
 		self.setup_control()
 		self.n = n
 		self.flag = True
@@ -82,9 +85,9 @@ class SubjectiveItemQuiz_controller(QtWidgets.QMainWindow):
 					self.ui.nextQuestionButton.setDisabled(False)
 					self.ui.preQuestionButton.setDisabled(False)
 					self.ui.goBackButton.setDisabled(False)
-					addToQuizHistoryQuestion(self.question, self.answer, self.ui.writeTextEdit.toPlainText(), float(p))
+					addToQuizHistoryQuestion(self.question, self.answer, self.ui.writeTextEdit.toPlainText(), float(p), self.question_id)
 					if float(p) < 10:
-						addToWrongQuestion(self.question, self.answer, self.ui.writeTextEdit.toPlainText())
+						addToWrongQuestion(self.question, self.answer, self.ui.writeTextEdit.toPlainText(), self.question_id)
 					self.resultSignal.emit(float(p), 1)
 				else:
 					self.ui.scheduleLabel.setText('所输分数不符合要求')
@@ -108,16 +111,21 @@ class SubjectiveItemQuiz_controller(QtWidgets.QMainWindow):
 
 
 # ----- 要提供的函数 ----- # TODO
-def addToQuizHistoryQuestion(question: str, answer: str, myAnswer: int, score: float):
+def addToQuizHistoryQuestion(question: str, answer: str, myAnswer: str, score: float, question_id):
 	"""
+	:param question_id:
 	:param question:
 	:param answer:
 	:param myAnswer: 1011这种二进制数，高位为D
 	:param score:
 	:return:
 	"""
-	pass
+	user = User()
+	user.add_test_history(question_id, myAnswer, score)
 
 
-def addToWrongQuestion(question: str, answer: str, myAnswer: str):
-	pass
+def addToWrongQuestion(question: str, answer: str, myAnswer: str, question_id):
+	user = User()
+	user.add_wrong_with_answer(question_id, myAnswer)
+
+# finish

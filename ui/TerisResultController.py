@@ -1,5 +1,7 @@
 from PyQt5 import QtWidgets, QtGui
 from PyQt5.Qt import *
+
+from db.user import User
 from ui.TetrisResult import Ui_TetrisResultForm
 
 
@@ -48,11 +50,13 @@ class TetrisResult_controller(QtWidgets.QMainWindow):
 		
 # ----- 补全的代码 ----- # TODO
 def getHighestScore() -> (int, int):
-	return 19, 15  # system, user
+	user = User()
+	return user.get_tetris_score()  # system, user
 
 
 def restoreHighestScore(x: int):
-	pass
+	user = User()
+	user.add_tetris_score(x)
 	
-		
+# finish
 	

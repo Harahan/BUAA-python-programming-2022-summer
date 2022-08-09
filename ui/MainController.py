@@ -3,6 +3,9 @@ import re
 from PyQt5 import QtWidgets, QtGui
 from PyQt5.Qt import *
 from PyQt5.QtWidgets import QFileDialog
+
+from db.questionBank import QuestionBank
+from db.user import User
 from ui.Main import Ui_MainForm
 from PyQt5.QtCore import pyqtSignal
 from ui.HistoryController import History_controller
@@ -160,7 +163,8 @@ class Main_controller(QtWidgets.QMainWindow):
 			self.ui.scheduleLabel.setText("搜索内容不应为空！")
 		else:
 			self.ui.scheduleLabel.setText("正在搜索中，请耐心等待。。。")
-			self.searchingResult_ui.questionAndAnswer = (question, getAnswer(question))
+			answer = getAnswer(question)
+			self.searchingResult_ui.questionAndAnswer = (question, answer[0], answer[1])
 			self.ui.scheduleLabel.clear()
 			self._hide(4)
 	
@@ -174,6 +178,7 @@ class Main_controller(QtWidgets.QMainWindow):
 	
 	def logoutButtonClicked(self):
 		self.ui.scheduleLabel.clear()
+		userExit()
 		self.logOutSignal.emit()
 		
 	def contributeButtonClicked(self):
@@ -190,6 +195,15 @@ def getFileContent(filePath: str) -> str:  # jpg, png, txt, pdf, jpeg
 	return getContent(filePath)
 
 
-def getAnswer(question: str) -> str:   # 可以返回一个空的字符串，如果没有
-	return ""
+def getAnswer(question: str) -> (str, int):   # 可以返回一个空的字符串，如果没有
+	qb = QuestionBank()
+	result = qb.search_question(question)
+	if len(result) == 0:
+		return ("", -1)
+	else:
+		return (result[1], result[9])
 
+def userExit():
+	user = User()
+	user.exit()
+# finish

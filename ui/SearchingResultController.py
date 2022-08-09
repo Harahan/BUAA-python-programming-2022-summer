@@ -1,5 +1,7 @@
 from PyQt5 import QtWidgets, QtGui
 from PyQt5.Qt import *
+
+from db.user import User
 from ui.SearchingResult import Ui_SearchingResultForm
 import re
 
@@ -8,7 +10,7 @@ class SearchingResult_controller(QtWidgets.QMainWindow):
 	goBackToMainSignal = pyqtSignal(int)
 	digit = re.compile(r'^\d+$')
 	
-	def __init__(self, userName: str, userPassword: str, questionAndAnswer: (str, str)):
+	def __init__(self, userName: str, userPassword: str, questionAndAnswer: (str, str, int)):
 		super(SearchingResult_controller, self).__init__()
 		self.ui = Ui_SearchingResultForm()
 		self.ui.setupUi(self)
@@ -75,19 +77,23 @@ class SearchingResult_controller(QtWidgets.QMainWindow):
 
 
 # ----- 要提供的函数 ----- # TODO
-def addToFavoriteQuestion(questionAndAnswer: (str, str)) -> bool:
-	return True
+def addToFavoriteQuestion(questionAndAnswer: (str, str, int)) -> bool:
+	user = User()
+	return user.add_like(questionAndAnswer[2])
 
 
-def addToReciteQuestion(questionAndAnswer: (str, str)) -> bool:
-	return True
+def addToReciteQuestion(questionAndAnswer: (str, str, int)) -> bool:
+	user = User()
+	return user.add_recite(questionAndAnswer[2])
 
 
-def addToWrongQuestion(questionAndAnswer: (str, str)) -> bool:
-	return True
+def addToWrongQuestion(questionAndAnswer: (str, str, int)) -> bool:
+	user = User()
+	return user.add_wrong_no_answer(questionAndAnswer[2])
 
 
-def addToSearchHistoryQuestion(questionAndAnswer: (str, str)) -> bool:
-	return True
+def addToSearchHistoryQuestion(questionAndAnswer: (str, str, int)) -> bool:
+	user = User()
+	return user.add_search_history(questionAndAnswer[2])
 
-
+# finish
