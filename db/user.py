@@ -106,7 +106,9 @@ class User:
         question_id = table_name + '.question_id'
         table_id = table_name + '.table_id'
         key_list = (question, answer, question_id, table_id)
-        return db.get_union_table_all(table_name, 'question_bank', 'question_id', 'question_id', key_list)
+        result = list(db.get_union_table_all(table_name, 'question_bank', 'question_id', 'question_id', key_list))
+        result.reverse()
+        return result
 
     def get_question_infor(self, question_id, table_id):
         table_name = self.name + self.table_list[3]
@@ -139,7 +141,9 @@ class User:
         answer = 'question_bank.answer'
         question_id = table_name + '.question_id'
         key_list = (question, answer, question_id)
-        return db.get_union_table_all(table_name, 'question_bank', 'question_id', 'question_id', key_list)
+        result = list(db.get_union_table_all(table_name, 'question_bank', 'question_id', 'question_id', key_list))
+        result = result.reverse()
+        return result
 
     def get_recite_table(self):
         table_name = self.get_table_name(1)
@@ -148,7 +152,9 @@ class User:
         answer = 'question_bank.answer'
         question_id = table_name + '.question_id'
         key_list = (question, answer, question_id)
-        return db.get_union_table_all(table_name, 'question_bank', 'question_id', 'question_id', key_list)
+        result = list(db.get_union_table_all(table_name, 'question_bank', 'question_id', 'question_id', key_list))
+        result.reverse()
+        return result
 
     def get_wrong_table(self):
         table_name = self.get_table_name(2)
@@ -158,7 +164,9 @@ class User:
         last_answer = table_name + '.last_answer'
         question_id = table_name + '.question_id'
         key_list = (question, answer, last_answer, question_id)
-        return db.get_union_table_all(table_name, 'question_bank', 'question_id', 'question_id', key_list)
+        result = list(db.get_union_table_all(table_name, 'question_bank', 'question_id', 'question_id', key_list))
+        result.reverse()
+        return result
 
     def get_question_number(self):
         db = DB()
