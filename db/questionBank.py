@@ -19,20 +19,20 @@ def cut_str(s: str):
         start2 = 12
         end2 = 24
         if len(tp[0]) < 12:
-            end1 = -1
+            end1 = len(tp[0])
             start2 = 0
-            end2 = -1
+            end2 = len(tp[0])
         elif len(tp[0]) < 24:
-            end2 = -1
+            end2 = len(tp[0])
         result.append(tp[0][start1:end1])
         result.append(tp[0][start2:end2])
     else:
         end1 = 12
         end2 = 12
         if len(tp[0]) < 12:
-            end1 = -1
+            end1 = len(tp[0])
         if len(tp[1]) < 12:
-            end2 = -1
+            end2 = len(tp[1])
         result.append(tp[0][:end1])
         result.append(tp[1][:end2])
     return tuple(result)
