@@ -199,8 +199,8 @@ class Board(QFrame):
 			self.numLinesRemoved = self.numLinesRemoved + numFullLines
 			Tetris.totLines = self.numLinesRemoved
 			self.msg2Statusbar.emit(str(self.numLinesRemoved))
-			if self.Speed >= 60 + 20 * (self.numLinesRemoved - preNumLinesRemoved):
-				self.Speed -= 20 * (self.numLinesRemoved - preNumLinesRemoved)
+			if self.Speed >= 20 + 30 * (self.numLinesRemoved - preNumLinesRemoved):
+				self.Speed -= 30 * (self.numLinesRemoved - preNumLinesRemoved)
 				# print(self.Speed)
 			self.isWaitingAfterLine = True
 			self.curPiece.setShape(Tetrominoe.NoShape)
