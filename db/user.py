@@ -142,7 +142,7 @@ class User:
         question_id = table_name + '.question_id'
         key_list = (question, answer, question_id)
         result = list(db.get_union_table_all(table_name, 'question_bank', 'question_id', 'question_id', key_list))
-        result = result.reverse()
+        result.reverse()
         return result
 
     def get_recite_table(self):
