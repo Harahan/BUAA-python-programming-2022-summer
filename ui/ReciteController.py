@@ -50,6 +50,9 @@ class Recite_controller(QtWidgets.QMainWindow):
 		self._showQuestionAndAnswer(1)
 		self.ui.totQuestionLabel.setText('/' + str(len(self.reciteQuestionAndAnswer)))
 		self.ui.scheduleTipsLabel.clear()
+	
+	def setup_control(self):
+		self._initParameter()
 		self.ui.questionTextEdit.setReadOnly(True)
 		self.ui.answerTextEdit.setReadOnly(True)
 		self.setWindowFlags(Qt.WindowCloseButtonHint)  # 隐藏标题
@@ -57,9 +60,6 @@ class Recite_controller(QtWidgets.QMainWindow):
 		self.ui.changeQuestionButton.setIcon(QIcon("../img/rightArrow.jpg"))
 		self.ui.changeQuestionButton.setIconSize(QSize(15, 15))
 		self.ui.userNamelabel.setText("用户名：" + self.userName)
-	
-	def setup_control(self):
-		self._initParameter()
 		self.ui.clearCurrentQuestionButton.clicked.connect(self.clearCurrentQuestionButtonClicked)
 		self.ui.nextQuestionButton.clicked.connect(self.nextQuestionButtonClicked)
 		self.ui.preQuestionButton.clicked.connect(self.preQuestionButtonClicked)
@@ -97,7 +97,6 @@ class Recite_controller(QtWidgets.QMainWindow):
 	
 	def goBackButtonClicked(self):
 		self.goBackToMainSignal.emit(3)
-		self._initParameter()
 	
 	def changeQuestionButtonClicked(self):
 		p = self.ui.questionNumberLineEdit.text()
@@ -107,6 +106,7 @@ class Recite_controller(QtWidgets.QMainWindow):
 	
 	def showEvent(self, a0: QtGui.QShowEvent):
 		self.reciteQuestionAndAnswer = getReciteQuestionAndAnswer()
+		self._initParameter()
 		a0.accept()
 
 

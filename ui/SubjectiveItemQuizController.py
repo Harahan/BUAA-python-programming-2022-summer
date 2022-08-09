@@ -85,6 +85,7 @@ class SubjectiveItemQuiz_controller(QtWidgets.QMainWindow):
 					self.ui.nextQuestionButton.setDisabled(False)
 					self.ui.preQuestionButton.setDisabled(False)
 					self.ui.goBackButton.setDisabled(False)
+					self.ui.lineEdit.setReadOnly(True)
 					addToQuizHistoryQuestion(self.question, self.answer, self.ui.writeTextEdit.toPlainText(), float(p), self.question_id)
 					if float(p) < 10:
 						addToWrongQuestion(self.question, self.answer, self.ui.writeTextEdit.toPlainText(), self.question_id)

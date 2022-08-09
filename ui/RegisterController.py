@@ -29,6 +29,10 @@ class RegisterForm_controller(QMainWindow):
 		self.ui.userPasswordInput.clear()
 	
 	def setup_control(self):
+		self.ui.userPasswordInput.setEchoMode(QLineEdit.Password)
+		self.ui.userNameInput.setPlaceholderText('输入长度不得超过6位')
+		self.ui.userPasswordInput.setClearButtonEnabled(True)
+		self.ui.userNameInput.setClearButtonEnabled(True)
 		self.setWindowIcon(QtGui.QIcon("../img/放大镜.jpg"))
 		self.setWindowFlags(Qt.WindowCloseButtonHint)  # 隐藏标题
 		self.ui.confirmButton.clicked.connect(self.confirmButtonClicked)

@@ -58,6 +58,9 @@ class Wrong_controller(QtWidgets.QMainWindow):
 		self._showQuestionAndAnswer(1)
 		self.ui.totQuestionLabel.setText('/' + str(len(self.wrongQuestionAndAnswer)))
 		self.ui.scheduleTipsLabel.clear()
+		
+	def setup_control(self):
+		self._initParameter()
 		self.ui.questionTextEdit.setReadOnly(True)
 		self.ui.rightAnswerTextEdit.setReadOnly(True)
 		self.ui.wrongAnswerTextEdit.setReadOnly(True)
@@ -66,9 +69,6 @@ class Wrong_controller(QtWidgets.QMainWindow):
 		self.ui.changeQuestionButton.setIcon(QIcon("../img/rightArrow.jpg"))
 		self.ui.changeQuestionButton.setIconSize(QSize(15, 15))
 		self.ui.userNamelabel.setText("用户名：" + self.userName)
-		
-	def setup_control(self):
-		self._initParameter()
 		self.ui.clearCurrentQuestionButton.clicked.connect(self.clearCurrentQuestionButtonClicked)
 		self.ui.nextQuestionButton.clicked.connect(self.nextQuestionButtonClicked)
 		self.ui.preQuestionButton.clicked.connect(self.preQuestionButtonClicked)
@@ -106,7 +106,6 @@ class Wrong_controller(QtWidgets.QMainWindow):
 	
 	def goBackButtonClicked(self):
 		self.goBackToMainSignal.emit(1)
-		self._initParameter()
 	
 	def changeQuestionButtonClicked(self):
 		p = self.ui.questionNumberLineEdit.text()
@@ -116,6 +115,7 @@ class Wrong_controller(QtWidgets.QMainWindow):
 	
 	def showEvent(self, a0: QtGui.QShowEvent):
 		self.wrongQuestionAndAnswer = getWrongQuestionAndAnswer()
+		self._initParameter()
 		a0.accept()
 	
 	

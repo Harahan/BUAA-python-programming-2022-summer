@@ -10,7 +10,7 @@ from OCR_and_PDF.fileProcess import getContent
 import re
 import db.question_process as checker
 
-_debug = False
+_debug = True
 
 
 class Contribute_controller(QtWidgets.QMainWindow):
@@ -33,6 +33,11 @@ class Contribute_controller(QtWidgets.QMainWindow):
 		self.ui.answerTextEdit.clear()
 		self.ui.questionTextEdit.clear()
 		
+	def _clearLabel(self):
+		self.ui.thanksTipsLabel.clear()
+		self.ui.questionTipsLabel.clear()
+		self.ui.answerTipsLabel.clear()
+		
 	def setup_control(self):
 		self.setWindowIcon(QtGui.QIcon("../img/放大镜.jpg"))
 		self._clearLabelAndText()
@@ -48,6 +53,7 @@ class Contribute_controller(QtWidgets.QMainWindow):
 		self.ui.clearAnswerButton.clicked.connect(self.clearAnswerButtonClicked)
 		
 	def openFileForQuestionButtonClicked(self):
+		self._clearLabel()
 		filePath, fileType = QFileDialog.getOpenFileName(self, "Open file", "./")
 		if re.match(self.rightfulFormat, filePath):
 			self.ui.questionTipsLabel.setText("正在识别文件，请耐心等待。。。")
@@ -61,6 +67,7 @@ class Contribute_controller(QtWidgets.QMainWindow):
 			self.ui.questionTipsLabel.setText("无法识别该文件类型，请再次尝试")
 	
 	def openFileForAnswerButtonClicked(self):
+		self._clearLabel()
 		filePath, fileType = QFileDialog.getOpenFileName(self, "Open file", "./")
 		if re.match(self.rightfulFormat, filePath):
 			self.ui.answerTipsLabel.setText("正在识别文件，请耐心等待。。。")
@@ -74,8 +81,7 @@ class Contribute_controller(QtWidgets.QMainWindow):
 			self.ui.answerTipsLabel.setText("无法识别该文件类型，请再次尝试")
 
 	def confirmButtonClicked(self):
-		self.ui.answerTipsLabel.clear()
-		self.ui.questionTipsLabel.clear()
+		self._clearLabel()
 		question = self.ui.questionTextEdit.toPlainText()
 		answer = self.ui.answerTextEdit.toPlainText()
 		flag = True
@@ -98,11 +104,11 @@ class Contribute_controller(QtWidgets.QMainWindow):
 		self._clearLabelAndText()
 		
 	def clearQuestionButtonClicked(self):
-		self.ui.questionTipsLabel.clear()
+		self._clearLabel()
 		self.ui.questionTextEdit.clear()
 		
 	def clearAnswerButtonClicked(self):
-		self.ui.answerTipsLabel.clear()
+		self._clearLabel()
 		self.ui.answerTextEdit.clear()
 		
 	def showEvent(self, a0: QtGui.QShowEvent):

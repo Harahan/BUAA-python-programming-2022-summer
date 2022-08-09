@@ -25,7 +25,7 @@ class DB():
             self.connect = pymysql.connect(host='127.0.0.1',
                                            port=3306,
                                            user='root',
-                                           password='123456',
+                                           password='hysyrf20011006',
                                            charset='utf8',
                                            database='小航搜题',
                                            autocommit=True)

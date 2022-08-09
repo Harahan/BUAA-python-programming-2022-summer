@@ -55,6 +55,10 @@ class LoginForm_controller(QMainWindow):
 		self.show()
 		
 	def setup_control(self):
+		self.ui.userPasswordInput.setEchoMode(QLineEdit.Password)
+		self.ui.userPasswordInput.setClearButtonEnabled(True)
+		self.ui.userNameInput.setClearButtonEnabled(True)
+		self.ui.userNameInput.setPlaceholderText('输入长度不得超过6位')
 		self.ui.userNameTipsLabel.clear()
 		self.ui.userPasswordTipsLabel.clear()
 		self.setWindowFlags(Qt.WindowCloseButtonHint)  # 隐藏标题

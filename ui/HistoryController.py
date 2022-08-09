@@ -54,13 +54,6 @@ class History_controller(QtWidgets.QMainWindow):
         self.ui.totQuestionLabel.setText('/' + str(len(self.historyQuestionAndAnswer)))
         # self.ui.questionNumberLineEdit.clear()
         self.ui.scheduleTipsLabel.clear()
-        self.ui.questionTextEdit.setReadOnly(True)
-        self.ui.answerTextEdit.setReadOnly(True)
-        self.setWindowFlags(Qt.WindowCloseButtonHint)  # 隐藏标题
-        self.setWindowIcon(QtGui.QIcon("../img/放大镜.jpg"))
-        self.ui.changeQuestionButton.setIcon(QIcon("../img/rightArrow.jpg"))
-        self.ui.changeQuestionButton.setIconSize(QSize(15, 15))
-        self.ui.userNamelabel.setText("用户名：" + self.userName)
 
     def _reshow(self):
         self.historyAnalyze_ui: Analyse_controller
@@ -69,6 +62,13 @@ class History_controller(QtWidgets.QMainWindow):
 
     def setup_control(self):
         self._initParameter()
+        self.ui.questionTextEdit.setReadOnly(True)
+        self.ui.answerTextEdit.setReadOnly(True)
+        self.setWindowFlags(Qt.WindowCloseButtonHint)  # 隐藏标题
+        self.setWindowIcon(QtGui.QIcon("../img/放大镜.jpg"))
+        self.ui.changeQuestionButton.setIcon(QIcon("../img/rightArrow.jpg"))
+        self.ui.changeQuestionButton.setIconSize(QSize(15, 15))
+        self.ui.userNamelabel.setText("用户名：" + self.userName)
         self.ui.historyAnalyzeButton.clicked.connect(self.historyAnalyzeButtonClicked)
         self.ui.clearCurrentQuestionButton.clicked.connect(self.clearCurrentQuestionButtonClicked)
         self.ui.nextQuestionButton.clicked.connect(self.nextQuestionButtonClicked)
@@ -127,7 +127,6 @@ class History_controller(QtWidgets.QMainWindow):
 
     def goBackButtonClicked(self):
         self.goBackToMainSignal.emit(0)
-        self._initParameter()
 
     def changeQuestionButtonClicked(self):
         p = self.ui.questionNumberLineEdit.text()
@@ -137,6 +136,7 @@ class History_controller(QtWidgets.QMainWindow):
 
     def showEvent(self, a0: QtGui.QShowEvent):
         self.historyQuestionAndAnswer = getHistoryQuestionAndAnswer()
+        self._initParameter()
         a0.accept()
 
 

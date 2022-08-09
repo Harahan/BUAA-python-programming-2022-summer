@@ -40,7 +40,7 @@ def cut_str(s: str):
 class QuestionBank:
     _instance = None
     _flag = False
-    key_list = ('question', 'answer', 'provider')
+    key_list = ('question', 'answer', 'type', 'provider')
 
     def __init__(self):
         if not QuestionBank._flag:
