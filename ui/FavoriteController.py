@@ -110,7 +110,6 @@ class Favorite_controller(QtWidgets.QMainWindow):
 		a0.accept()
 
 
-# ----- 要提供的函数 ----- # TODO
 def getFavoriteQuestionAndAnswer() -> [(str, str, int)]:  # question, right answer, question_id
 	user = User()
 	return user.get_like_table()

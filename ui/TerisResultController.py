@@ -48,7 +48,6 @@ class TetrisResult_controller(QtWidgets.QMainWindow):
 		a0.accept()
 		
 		
-# ----- 补全的代码 ----- # TODO
 def getHighestScore() -> (int, int):
 	user = User()
 	return user.get_tetris_score()  # system, user

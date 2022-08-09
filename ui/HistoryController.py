@@ -140,7 +140,6 @@ class History_controller(QtWidgets.QMainWindow):
         a0.accept()
 
 
-# ----- 要提供的函数 ----- # TODO
 def getHistoryQuestionAndAnswer() -> ((str, str, int, int)):  # question, answer, question_id, table_id
     user = User()
     return user.get_history_table()

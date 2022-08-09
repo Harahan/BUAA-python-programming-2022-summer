@@ -71,7 +71,6 @@ class RegisterForm_controller(QMainWindow):
 		a0.accept()
 
 
-# ----- 补全的的部分 ----- # TODO
 def checkUserNameAlive(name: str) -> bool:
 	return False
 	return u.hasname(name)

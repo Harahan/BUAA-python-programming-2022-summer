@@ -110,7 +110,6 @@ class Recite_controller(QtWidgets.QMainWindow):
 		a0.accept()
 
 
-# ----- 要提供的函数 ----- # TODO
 def getReciteQuestionAndAnswer() -> [(str, str, int)]:  # question, answer, question_id
 	user = User()
 	return user.get_recite_table()

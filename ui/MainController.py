@@ -189,7 +189,6 @@ class Main_controller(QtWidgets.QMainWindow):
 		self._hide(5)
 	
 	
-# ----- 补全的代码 ----- # TODO
 def getFileContent(filePath: str) -> str:  # jpg, png, txt, pdf, jpeg
 
 	return getContent(filePath)

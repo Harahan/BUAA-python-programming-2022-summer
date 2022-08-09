@@ -42,7 +42,6 @@ class WriteOffController(QtWidgets.QMainWindow):
 		a0.accept()
 		
 	
-# ----- 补全的代码 ----- # TODO
 def writeOffUser() -> None:
 	user = User()
 	user.destroy()

@@ -116,7 +116,6 @@ class Contribute_controller(QtWidgets.QMainWindow):
 		a0.accept()
 	
 	
-# ----- 补全的代码 ----- # TODO
 def getFileContent(filePath: str) -> str:  # jpg, png, txt, pdf, jpeg
 
 	return getContent(filePath)

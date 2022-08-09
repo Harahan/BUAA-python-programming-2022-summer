@@ -112,7 +112,6 @@ class ObjectiveItemQuiz_controller(QtWidgets.QMainWindow):
 		exit(0)
 	
 	
-# ----- 要提供的函数 ----- # TODO
 def addToQuizHistoryQuestion(question: str, choices: [str], answer: int, myAnswer: int, score: float, question_id):
 	"""
 	:param question_id:

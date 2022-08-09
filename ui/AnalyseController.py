@@ -92,7 +92,6 @@ class Analyse_controller(QtWidgets.QMainWindow):
 		self.goBackToHistorySignal.emit()
 	
 
-# ----- 要提供的函数 ----- # TODO
 def getQuestionInfor(question_id: int, table_id: int) -> (int, str, bool, bool, bool, bool, int, str):
 	"""
 	:param question_id:

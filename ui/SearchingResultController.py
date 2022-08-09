@@ -76,7 +76,6 @@ class SearchingResult_controller(QtWidgets.QMainWindow):
 		a0.accept()
 
 
-# ----- 要提供的函数 ----- # TODO
 def addToFavoriteQuestion(questionAndAnswer: (str, str, int)) -> bool:
 	user = User()
 	return user.add_like(questionAndAnswer[2])

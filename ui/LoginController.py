@@ -104,7 +104,6 @@ class LoginForm_controller(QMainWindow):
 		self.register_ui.show()
 		
 		
-# ----- 补全的的部分 ----- # TODO
 def checkUserNameAlive(name: str) -> bool:
 	return u.hasname(name)
 	
