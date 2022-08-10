@@ -53,6 +53,7 @@ class Contribute_controller(QtWidgets.QMainWindow):
 		self.ui.clearAnswerButton.clicked.connect(self.clearAnswerButtonClicked)
 		
 	def openFileForQuestionButtonClicked(self):
+		self.ui.questionTextEdit.clear()
 		self._clearLabel()
 		filePath, fileType = QFileDialog.getOpenFileName(self, "Open file", "./")
 		if re.match(self.rightfulFormat, filePath):
@@ -67,6 +68,7 @@ class Contribute_controller(QtWidgets.QMainWindow):
 			self.ui.questionTipsLabel.setText("无法识别该文件类型，请再次尝试")
 	
 	def openFileForAnswerButtonClicked(self):
+		self.ui.answerTextEdit.clear()
 		self._clearLabel()
 		filePath, fileType = QFileDialog.getOpenFileName(self, "Open file", "./")
 		if re.match(self.rightfulFormat, filePath):

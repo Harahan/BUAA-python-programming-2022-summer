@@ -10,6 +10,7 @@ class SubjectiveItemQuiz_controller(QtWidgets.QMainWindow):
 	changeSignal = pyqtSignal(int, int)
 	goToResultSignal = pyqtSignal(int)
 	resultSignal = pyqtSignal(int, int)
+	goBackToMainSignal = pyqtSignal(int)
 	empty = re.compile(r"^\s*$")
 	digit = re.compile(r'^\d+(\.\d+)?$')
 	
@@ -45,6 +46,7 @@ class SubjectiveItemQuiz_controller(QtWidgets.QMainWindow):
 		self.ui.confirmButton.clicked.connect(self.confirmButtonClicked)
 		self.ui.goBackButton.clicked.connect(self.goBackButtonClicked)
 		self.ui.clearButton.clicked.connect(self.clearButtonClicked)
+		self.ui.goBackButton_2.clicked.connect(self.goBackButton_2Clicked)
 
 	def showEvent(self, a0: QtGui.QShowEvent):
 		self.ui.scheduleLabel.clear()
@@ -86,6 +88,7 @@ class SubjectiveItemQuiz_controller(QtWidgets.QMainWindow):
 					self.ui.preQuestionButton.setDisabled(False)
 					self.ui.goBackButton.setDisabled(False)
 					self.ui.lineEdit.setReadOnly(True)
+					self.ui.lineEdit.setText(round(float(p), 2))
 					addToQuizHistoryQuestion(self.question, self.answer, self.ui.writeTextEdit.toPlainText(), float(p), self.question_id)
 					if float(p) < 10:
 						addToWrongQuestion(self.question, self.answer, self.ui.writeTextEdit.toPlainText(), self.question_id)
@@ -106,9 +109,9 @@ class SubjectiveItemQuiz_controller(QtWidgets.QMainWindow):
 	def preQuestionButtonClicked(self):
 		self.changeSignal.emit(self.n, 0)
 		
-	def closeEvent(self, a0: QtGui.QCloseEvent):
-		a0.accept()
-		exit(0)
+	def goBackButton_2Clicked(self):
+		self.goBackToMainSignal.emit(10)
+		self.close()
 
 
 def addToQuizHistoryQuestion(question: str, answer: str, myAnswer: str, score: float, question_id):

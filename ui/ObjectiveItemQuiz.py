@@ -84,6 +84,10 @@ class Ui_ObjectiveItemQuizForm(object):
         self.answerLabel.setGeometry(QtCore.QRect(550, 680, 251, 41))
         self.answerLabel.setStyleSheet("font: 75 10pt \"Consolas\" rgb(241, 255, 235);")
         self.answerLabel.setObjectName("answerLabel")
+        self.goBackButton_2 = QtWidgets.QPushButton(ObjectiveItemQuizForm)
+        self.goBackButton_2.setGeometry(QtCore.QRect(940, 700, 91, 41))
+        self.goBackButton_2.setStyleSheet("font: 75 10pt \"Consolas\" rgb(241, 255, 235);")
+        self.goBackButton_2.setObjectName("goBackButton_2")
 
         self.retranslateUi(ObjectiveItemQuizForm)
         QtCore.QMetaObject.connectSlotsByName(ObjectiveItemQuizForm)
@@ -97,7 +101,8 @@ class Ui_ObjectiveItemQuizForm(object):
         self.userNamelabel.setText(_translate("ObjectiveItemQuizForm", "用户名：蛤蛤蛤蛤蛤蛤"))
         self.scheduleLabel.setText(_translate("ObjectiveItemQuizForm", "正在识别文件，请耐心等待。。。"))
         self.confirmButton.setText(_translate("ObjectiveItemQuizForm", "确认提交"))
-        self.goBackButton.setText(_translate("ObjectiveItemQuizForm", "返回"))
+        self.goBackButton.setText(_translate("ObjectiveItemQuizForm", "交卷"))
         self.scoreLabel.setText(_translate("ObjectiveItemQuizForm", "得分：10/10"))
         self.answerLabel.setText(_translate("ObjectiveItemQuizForm", "正确答案：A, B, C, D"))
+        self.goBackButton_2.setText(_translate("ObjectiveItemQuizForm", "返回"))
 

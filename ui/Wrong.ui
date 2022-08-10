@@ -100,7 +100,7 @@ p, li { white-space: pre-wrap; }
   <widget class="QPushButton" name="preQuestionButton">
    <property name="geometry">
     <rect>
-     <x>50</x>
+     <x>40</x>
      <y>430</y>
      <width>151</width>
      <height>51</height>
@@ -226,67 +226,6 @@ p, li { white-space: pre-wrap; }
     <string>正确答案：</string>
    </property>
   </widget>
-  <widget class="QLabel" name="currentScheduleLabel">
-   <property name="geometry">
-    <rect>
-     <x>500</x>
-     <y>500</y>
-     <width>91</width>
-     <height>18</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">font: 9pt &quot;Consolas&quot; rgb(255, 14, 30);</string>
-   </property>
-   <property name="text">
-    <string>当前题目：</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="questionNumberLineEdit">
-   <property name="geometry">
-    <rect>
-     <x>580</x>
-     <y>497</y>
-     <width>51</width>
-     <height>25</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">font: 9pt &quot;Consolas&quot; rgb(255, 14, 30);</string>
-   </property>
-   <property name="text">
-    <string>12</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="totQuestionLabel">
-   <property name="geometry">
-    <rect>
-     <x>640</x>
-     <y>497</y>
-     <width>41</width>
-     <height>18</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">font: 9pt &quot;Consolas&quot; rgb(255, 14, 30);</string>
-   </property>
-   <property name="text">
-    <string>/129</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="changeQuestionButton">
-   <property name="geometry">
-    <rect>
-     <x>690</x>
-     <y>500</y>
-     <width>21</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
   <widget class="QTextEdit" name="wrongAnswerTextEdit">
    <property name="geometry">
     <rect>
@@ -321,6 +260,67 @@ p, li { white-space: pre-wrap; }
    </property>
    <property name="text">
     <string>我的错误答案：</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="totQuestionLabel">
+   <property name="geometry">
+    <rect>
+     <x>670</x>
+     <y>507</y>
+     <width>41</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 9pt &quot;Consolas&quot; rgb(255, 14, 30);</string>
+   </property>
+   <property name="text">
+    <string>/129</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="questionNumberLineEdit">
+   <property name="geometry">
+    <rect>
+     <x>620</x>
+     <y>500</y>
+     <width>51</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 9pt &quot;Consolas&quot; rgb(255, 14, 30);</string>
+   </property>
+   <property name="text">
+    <string>12</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="currentScheduleLabel">
+   <property name="geometry">
+    <rect>
+     <x>530</x>
+     <y>510</y>
+     <width>91</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 9pt &quot;Consolas&quot; rgb(255, 14, 30);</string>
+   </property>
+   <property name="text">
+    <string>当前题目：</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="changeQuestionButton">
+   <property name="geometry">
+    <rect>
+     <x>720</x>
+     <y>510</y>
+     <width>21</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
    </property>
   </widget>
  </widget>

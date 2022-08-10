@@ -77,6 +77,10 @@ class Ui_SubjectiveItemQuizForm(object):
         self.totScoreLabel.setGeometry(QtCore.QRect(1080, 600, 71, 41))
         self.totScoreLabel.setStyleSheet("font: 75 10pt \"Consolas\" rgb(241, 255, 235);")
         self.totScoreLabel.setObjectName("totScoreLabel")
+        self.goBackButton_2 = QtWidgets.QPushButton(SubjectiveItemQuizForm)
+        self.goBackButton_2.setGeometry(QtCore.QRect(940, 700, 91, 41))
+        self.goBackButton_2.setStyleSheet("font: 75 10pt \"Consolas\" rgb(241, 255, 235);")
+        self.goBackButton_2.setObjectName("goBackButton_2")
 
         self.retranslateUi(SubjectiveItemQuizForm)
         QtCore.QMetaObject.connectSlotsByName(SubjectiveItemQuizForm)
@@ -90,7 +94,7 @@ class Ui_SubjectiveItemQuizForm(object):
         self.userNamelabel.setText(_translate("SubjectiveItemQuizForm", "用户名：蛤蛤蛤蛤蛤蛤"))
         self.scheduleLabel.setText(_translate("SubjectiveItemQuizForm", "正在识别文件，请耐心等待。。。"))
         self.confirmButton.setText(_translate("SubjectiveItemQuizForm", "确认提交"))
-        self.goBackButton.setText(_translate("SubjectiveItemQuizForm", "返回"))
+        self.goBackButton.setText(_translate("SubjectiveItemQuizForm", "交卷"))
         self.scoreLabel.setText(_translate("SubjectiveItemQuizForm", "得分："))
         self.myAnswerLabel.setText(_translate("SubjectiveItemQuizForm", "我的答案："))
         self.rightAnswerTextEdit.setHtml(_translate("SubjectiveItemQuizForm", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
@@ -105,4 +109,5 @@ class Ui_SubjectiveItemQuizForm(object):
 "</style></head><body style=\" font-family:\'Consolas\'; font-size:10pt; font-weight:72; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
         self.totScoreLabel.setText(_translate("SubjectiveItemQuizForm", "/10"))
+        self.goBackButton_2.setText(_translate("SubjectiveItemQuizForm", "返回"))
 

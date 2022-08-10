@@ -13,7 +13,7 @@ class Ui_PreForQuizForm(object):
         PreForQuizForm.setObjectName("PreForQuizForm")
         PreForQuizForm.resize(894, 553)
         self.comboBox = QtWidgets.QComboBox(PreForQuizForm)
-        self.comboBox.setGeometry(QtCore.QRect(70, 60, 101, 31))
+        self.comboBox.setGeometry(QtCore.QRect(70, 60, 101, 41))
         font = QtGui.QFont()
         font.setFamily("Consolas")
         font.setPointSize(10)

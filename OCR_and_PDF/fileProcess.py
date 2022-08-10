@@ -1,4 +1,3 @@
-import os
 import cv2
 import numpy as np
 from io import StringIO
@@ -8,11 +7,12 @@ from pdfminer.pdfdocument import PDFDocument
 from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
 from pdfminer.pdfpage import PDFPage
 from pdfminer.pdfparser import PDFParser
-import easyocr
+
+OCR_reader = None
 
 
 def txt_Processor(file_path):
-    print('begin txt process')
+    # print('begin txt process')
     text = ''
     with open(file_path, 'r', encoding='utf-8') as file:
         for line in file.readlines():
@@ -37,7 +37,7 @@ def parse(path):
 
 
 def pdf_Processor(file_path):
-    print('begin pdf process')
+    # print('begin pdf process')
     text = parse(file_path)
     '''
     也许这里需要再对读取出来的文本有些处理，这个具体要与前端沟通好
@@ -45,8 +45,8 @@ def pdf_Processor(file_path):
     return text
 
 
-def img_Processor(file_path, bi_thresh, OCR_reader):
-    print('begin image process')
+def img_Processor(file_path, bi_thresh):
+    # print('begin image process')
     img = cv2.imread(file_path)
     if get_file_type(file_path) == 'png':
         imgray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
@@ -85,14 +85,14 @@ def get_file_type(file_path):
 def getContent(file_path):
     bi_thresh = 150  # 图片二值化时候的阈值，范围为0-255
 
-    OCR_reader = easyocr.Reader(['ch_sim', 'en'])  # only need to run once，代表easyOCR可以使用简体中文和英文
+    # OCR_reader = easyocr.Reader(['ch_sim', 'en'])  # only need to run once，代表easyOCR可以使用简体中文和英文
 
     suffix = get_file_type(file_path)
-    print('suffix: ', suffix)
+    # print('suffix: ', suffix)
     if suffix == 'pdf':
         text = pdf_Processor(file_path)
     elif suffix == 'jpg' or suffix == 'jpeg' or suffix == 'png':
-        text = img_Processor(file_path, bi_thresh, OCR_reader)
+        text = img_Processor(file_path, bi_thresh)
     elif suffix == 'txt':
         text = txt_Processor(file_path)
     else:

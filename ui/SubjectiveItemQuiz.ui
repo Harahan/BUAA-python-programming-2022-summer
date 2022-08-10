@@ -135,7 +135,7 @@
     <string notr="true">font: 75 10pt &quot;Consolas&quot; rgb(241, 255, 235);</string>
    </property>
    <property name="text">
-    <string>返回</string>
+    <string>交卷</string>
    </property>
   </widget>
   <widget class="QLabel" name="scoreLabel">
@@ -269,6 +269,22 @@ p, li { white-space: pre-wrap; }
    </property>
    <property name="text">
     <string>/10</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="goBackButton_2">
+   <property name="geometry">
+    <rect>
+     <x>940</x>
+     <y>700</y>
+     <width>91</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 10pt &quot;Consolas&quot; rgb(241, 255, 235);</string>
+   </property>
+   <property name="text">
+    <string>返回</string>
    </property>
   </widget>
  </widget>

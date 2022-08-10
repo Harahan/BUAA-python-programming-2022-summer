@@ -15,7 +15,7 @@ class PreForQuiz_controller(QtWidgets.QMainWindow):
 	digit = re.compile(r'^\d+$')
 	goBackToMainSignal = pyqtSignal(int)
 
-	def __init__(self, userName: str, userPassword: str, quizResult_ui: QuizResult_controller):
+	def __init__(self, userName: str, userPassword: str, quizResult_ui: QuizResult_controller, MainReshow):
 		super(PreForQuiz_controller, self).__init__()
 		self.ui = Ui_PreForQuizForm()
 		self.ui.setupUi(self)
@@ -34,6 +34,7 @@ class PreForQuiz_controller(QtWidgets.QMainWindow):
 		self.o = 0
 		self.s = 0
 		self.flag = True
+		self.MainReshow = MainReshow
 
 	def _check(self):
 		flag, tag = 0, 0
@@ -51,6 +52,8 @@ class PreForQuiz_controller(QtWidgets.QMainWindow):
 
 	def _decide(self, val):
 		if val == '自选':
+			for i in range(5):
+				self.choices[i].setText('0')
 			for i in range(5):
 				self.choices[i].setDisabled(False)
 		elif val == '随机':
@@ -148,6 +151,7 @@ class PreForQuiz_controller(QtWidgets.QMainWindow):
 			sub.changeSignal.connect(self._changeWindows)
 			sub.resultSignal.connect(self._result)
 			sub.goToResultSignal.connect(self._showResult)
+			sub.goBackToMainSignal.connect(self.MainReshow)
 			self.x.append(sub)
 			# print(i)
 		self.flag = False

@@ -76,10 +76,16 @@ class Recite_controller(QtWidgets.QMainWindow):
 				self.ui.scheduleTipsLabel.setText("该题在刚才已被清除！")
 	
 	def nextQuestionButtonClicked(self):
-		self._showQuestionAndAnswer(self.currentPage + 1)
+		if self.currentPage < len(self.reciteQuestionAndAnswer):
+			self._showQuestionAndAnswer(self.currentPage + 1)
+		else:
+			self._showQuestionAndAnswer(1)
 	
 	def preQuestionButtonClicked(self):
-		self._showQuestionAndAnswer(self.currentPage - 1)
+		if self.currentPage >= 2:
+			self._showQuestionAndAnswer(self.currentPage - 1)
+		else:
+			self._showQuestionAndAnswer(len(self.reciteQuestionAndAnswer))
 	
 	def addToWrongQuestionButtonClicked(self):
 		if self._checkNumber(self.currentPage):

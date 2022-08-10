@@ -10,6 +10,7 @@ class ObjectiveItemQuiz_controller(QtWidgets.QMainWindow):
 	changeSignal = pyqtSignal(int, int)
 	goToResultSignal = pyqtSignal(int)
 	resultSignal = pyqtSignal(float, int)
+	goBackToMainSignal = pyqtSignal(int)
 	
 	def __init__(self, userName: str, userPassword: str, question: str, choices: [str], answer: int, question_id: int, n: int):
 		super(ObjectiveItemQuiz_controller, self).__init__()
@@ -55,6 +56,7 @@ class ObjectiveItemQuiz_controller(QtWidgets.QMainWindow):
 		self.ui.confirmButton.clicked.connect(self.confirmButtonClicked)
 		self.ui.goBackButton.clicked.connect(self.goBackButtonClicked)
 		self.ui.clearButton.clicked.connect(self.clearButtonClicked)
+		self.ui.goBackButton_2.clicked.connect(self.goBackButton_2Clicked)
 	
 	def showEvent(self, a0: QtGui.QShowEvent):
 		self.ui.scheduleLabel.clear()
@@ -107,9 +109,9 @@ class ObjectiveItemQuiz_controller(QtWidgets.QMainWindow):
 	def preQuestionButtonClicked(self):
 		self.changeSignal.emit(self.n, 0)
 		
-	def closeEvent(self, a0: QtGui.QCloseEvent):
-		a0.accept()
-		exit(0)
+	def goBackButton_2Clicked(self):
+		self.goBackToMainSignal.emit(10)
+		self.close()
 	
 	
 def addToQuizHistoryQuestion(question: str, choices: [str], answer: int, myAnswer: int, score: float, question_id):

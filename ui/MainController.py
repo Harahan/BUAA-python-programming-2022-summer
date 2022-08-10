@@ -1,4 +1,5 @@
 import re
+import time
 
 from PyQt5 import QtWidgets, QtGui
 from PyQt5.Qt import *
@@ -20,7 +21,7 @@ from ui.QuizResultController import QuizResult_controller
 from ui.TerisResultController import TetrisResult_controller
 from OCR_and_PDF.fileProcess import getContent
 
-_debug = True
+_debug = False
 
 
 class Main_controller(QtWidgets.QMainWindow):
@@ -44,7 +45,7 @@ class Main_controller(QtWidgets.QMainWindow):
 		self.contribute_ui = Contribute_controller(userName, userPassword)
 		self.tetrisResult_ui = TetrisResult_controller(userName, userPassword)
 		self.quizResult_ui = QuizResult_controller(userName, userPassword, 0, 0, 0, 0, 0, self.tetrisResult_ui)
-		self.preForQuiz_ui = PreForQuiz_controller(userName, userPassword, self.quizResult_ui)
+		self.preForQuiz_ui = PreForQuiz_controller(userName, userPassword, self.quizResult_ui, self._reshow)
 		self.setup_control()
 		
 	def _reshow(self, sel: int):
@@ -64,11 +65,12 @@ class Main_controller(QtWidgets.QMainWindow):
 			self.contribute_ui.hide()
 		elif sel == 7:
 			self.preForQuiz_ui.hide()
-			# return
 		elif sel == 8:
 			self.quizResult_ui.hide()
 		elif sel == 9:
 			self.tetrisResult_ui.hide()
+		elif sel == 10:
+			pass  # quiz return
 		self.show()
 		
 	def _hide(self, sel: int):
@@ -137,14 +139,15 @@ class Main_controller(QtWidgets.QMainWindow):
 		self._hide(1)
 	
 	def openFileButtonClicked(self):
+		self.ui.questionTextEdit.clear()
 		self.ui.scheduleLabel.clear()
 		filePath, fileType = QFileDialog.getOpenFileName(self, "Open file", "./")
 		if _debug:
 			print(filePath, fileType)
 		if re.match(self.rightfulFormat, filePath):
+			self.ui.scheduleLabel.setText("正在识别文件，请耐心等待。。。")
 			if _debug:
 				print(re.match(self.rightfulFormat, filePath).group(0))
-			self.ui.scheduleLabel.setText("正在识别文件，请耐心等待。。。")
 			content = getFileContent(filePath)
 			self.ui.scheduleLabel.clear()
 			if content:
@@ -164,7 +167,7 @@ class Main_controller(QtWidgets.QMainWindow):
 		else:
 			self.ui.scheduleLabel.setText("正在搜索中，请耐心等待。。。")
 			result = getAnswer(question)
-			self.searchingResult_ui.questionAndAnswer = (result[0], result[1], result[2])
+			self.searchingResult_ui.questionAndAnswer = (result[0] if result[0] else question, result[1], result[2])
 			self.ui.scheduleLabel.clear()
 			self._hide(4)
 	

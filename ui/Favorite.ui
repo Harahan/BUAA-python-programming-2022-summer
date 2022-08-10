@@ -229,8 +229,8 @@ p, li { white-space: pre-wrap; }
   <widget class="QLabel" name="currentScheduleLabel">
    <property name="geometry">
     <rect>
-     <x>500</x>
-     <y>500</y>
+     <x>520</x>
+     <y>510</y>
      <width>91</width>
      <height>18</height>
     </rect>
@@ -245,10 +245,10 @@ p, li { white-space: pre-wrap; }
   <widget class="QLineEdit" name="questionNumberLineEdit">
    <property name="geometry">
     <rect>
-     <x>580</x>
-     <y>497</y>
+     <x>610</x>
+     <y>500</y>
      <width>51</width>
-     <height>25</height>
+     <height>31</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -261,8 +261,8 @@ p, li { white-space: pre-wrap; }
   <widget class="QLabel" name="totQuestionLabel">
    <property name="geometry">
     <rect>
-     <x>640</x>
-     <y>497</y>
+     <x>660</x>
+     <y>507</y>
      <width>41</width>
      <height>18</height>
     </rect>
@@ -277,8 +277,8 @@ p, li { white-space: pre-wrap; }
   <widget class="QPushButton" name="changeQuestionButton">
    <property name="geometry">
     <rect>
-     <x>690</x>
-     <y>500</y>
+     <x>710</x>
+     <y>510</y>
      <width>21</width>
      <height>21</height>
     </rect>
