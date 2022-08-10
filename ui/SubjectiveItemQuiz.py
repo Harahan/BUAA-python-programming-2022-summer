@@ -81,6 +81,10 @@ class Ui_SubjectiveItemQuizForm(object):
         self.goBackButton_2.setGeometry(QtCore.QRect(940, 700, 91, 41))
         self.goBackButton_2.setStyleSheet("font: 75 10pt \"Consolas\" rgb(241, 255, 235);")
         self.goBackButton_2.setObjectName("goBackButton_2")
+        self.tipsLabel = QtWidgets.QLabel(SubjectiveItemQuizForm)
+        self.tipsLabel.setGeometry(QtCore.QRect(20, 690, 251, 41))
+        self.tipsLabel.setStyleSheet("font: 75 10pt \"Consolas\" rgb(241, 255, 235);")
+        self.tipsLabel.setObjectName("tipsLabel")
 
         self.retranslateUi(SubjectiveItemQuizForm)
         QtCore.QMetaObject.connectSlotsByName(SubjectiveItemQuizForm)
@@ -110,4 +114,5 @@ class Ui_SubjectiveItemQuizForm(object):
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
         self.totScoreLabel.setText(_translate("SubjectiveItemQuizForm", "/10"))
         self.goBackButton_2.setText(_translate("SubjectiveItemQuizForm", "返回"))
+        self.tipsLabel.setText(_translate("SubjectiveItemQuizForm", "当前题号：10/20"))
 

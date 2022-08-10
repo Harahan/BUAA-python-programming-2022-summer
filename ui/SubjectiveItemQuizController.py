@@ -14,7 +14,7 @@ class SubjectiveItemQuiz_controller(QtWidgets.QMainWindow):
 	empty = re.compile(r"^\s*$")
 	digit = re.compile(r'^\d+(\.\d+)?$')
 	
-	def __init__(self, userName: str, userPassword: str, question: str, answer: str, question_id: int, n: int):
+	def __init__(self, userName: str, userPassword: str, question: str, answer: str, question_id: int, n: int, tot: int):
 		super(SubjectiveItemQuiz_controller, self).__init__()
 		self.ui = Ui_SubjectiveItemQuizForm()
 		self.ui.setupUi(self)
@@ -23,12 +23,14 @@ class SubjectiveItemQuiz_controller(QtWidgets.QMainWindow):
 		self.question = question
 		self.answer = answer
 		self.question_id = question_id
-		self.setup_control()
 		self.n = n
+		self.tot = tot
+		self.setup_control()
 		self.flag = True
 		
 	def setup_control(self):
 		self.setWindowFlags(Qt.WindowCloseButtonHint)  # 隐藏标题
+		self.ui.tipsLabel.setText('当前题号：' + str(self.n + 1) + '/' + str(self.tot))
 		self.setWindowIcon(QtGui.QIcon("../img/放大镜.jpg"))
 		self.ui.userNamelabel.setText("用户名：" + self.userName)
 		self.ui.rightAnswerTextEdit.hide()

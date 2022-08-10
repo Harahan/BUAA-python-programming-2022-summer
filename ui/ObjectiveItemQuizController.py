@@ -12,7 +12,7 @@ class ObjectiveItemQuiz_controller(QtWidgets.QMainWindow):
 	resultSignal = pyqtSignal(float, int)
 	goBackToMainSignal = pyqtSignal(int)
 	
-	def __init__(self, userName: str, userPassword: str, question: str, choices: [str], answer: int, question_id: int, n: int):
+	def __init__(self, userName: str, userPassword: str, question: str, choices: [str], answer: int, question_id: int, n: int, tot: int):
 		super(ObjectiveItemQuiz_controller, self).__init__()
 		self.ui = Ui_ObjectiveItemQuizForm()
 		self.ui.setupUi(self)
@@ -30,6 +30,7 @@ class ObjectiveItemQuiz_controller(QtWidgets.QMainWindow):
 		self.choicesBox = [self.ui.AradioButton, self.ui.BradioButton, self.ui.CradioButton,
 						   self.ui.DradioButton]
 		self.n = n
+		self.tot = tot
 		self.setup_control()
 	
 	def _check(self):
@@ -40,6 +41,7 @@ class ObjectiveItemQuiz_controller(QtWidgets.QMainWindow):
 	
 	def setup_control(self):
 		self.setWindowFlags(Qt.WindowCloseButtonHint)  # 隐藏标题
+		self.ui.tipsLabel.setText('当前题号：' + str(self.n + 1) + '/' + str(self.tot))
 		self.setWindowIcon(QtGui.QIcon("../img/放大镜.jpg"))
 		self.ui.userNamelabel.setText("用户名：" + self.userName)
 		self.ui.choiceQuestionTextEdit.setText(self.question)

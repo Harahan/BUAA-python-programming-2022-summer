@@ -88,6 +88,10 @@ class Ui_ObjectiveItemQuizForm(object):
         self.goBackButton_2.setGeometry(QtCore.QRect(940, 700, 91, 41))
         self.goBackButton_2.setStyleSheet("font: 75 10pt \"Consolas\" rgb(241, 255, 235);")
         self.goBackButton_2.setObjectName("goBackButton_2")
+        self.tipsLabel = QtWidgets.QLabel(ObjectiveItemQuizForm)
+        self.tipsLabel.setGeometry(QtCore.QRect(20, 690, 251, 41))
+        self.tipsLabel.setStyleSheet("font: 75 10pt \"Consolas\" rgb(241, 255, 235);")
+        self.tipsLabel.setObjectName("tipsLabel")
 
         self.retranslateUi(ObjectiveItemQuizForm)
         QtCore.QMetaObject.connectSlotsByName(ObjectiveItemQuizForm)
@@ -105,4 +109,5 @@ class Ui_ObjectiveItemQuizForm(object):
         self.scoreLabel.setText(_translate("ObjectiveItemQuizForm", "得分：10/10"))
         self.answerLabel.setText(_translate("ObjectiveItemQuizForm", "正确答案：A, B, C, D"))
         self.goBackButton_2.setText(_translate("ObjectiveItemQuizForm", "返回"))
+        self.tipsLabel.setText(_translate("ObjectiveItemQuizForm", "当前题号：10/20"))
 

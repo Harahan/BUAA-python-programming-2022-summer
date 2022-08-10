@@ -41,6 +41,16 @@ class Contribute_controller(QtWidgets.QMainWindow):
 	def setup_control(self):
 		self.setWindowIcon(QtGui.QIcon("../img/放大镜.jpg"))
 		self._clearLabelAndText()
+		self.ui.questionTextEdit.setPlaceholderText('注意客观题题目贡献格式为：\n'
+													'xxxxxxxxxxx:\n'
+													'A xxx\n'
+													'B xxx\n'
+													'C xxx\n'
+													'D xxx\n'
+													'未按格式贡献有可能之后显示会有问题，'
+													'同时上述英文字母均需大写，且仅接受4个选项题目')
+		self.ui.answerTextEdit.setPlaceholderText('注意客观题答案贡献格式为（以答案为: A, B为例）：'
+												  'A, B')
 		self.setWindowFlags(Qt.WindowCloseButtonHint)  # 隐藏标题
 		self.ui.userNamelabel.setText("用户名：" + self.userName)
 		self.ui.questionTypeComboBox.addItems(['', '客观题', '主观题'])
