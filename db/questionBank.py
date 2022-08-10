@@ -1,6 +1,7 @@
 import random
 import db.question_process as process
 from db.DB import DB
+import Levenshtein
 
 
 def check_repeat(table_name, key, value):
@@ -10,32 +11,10 @@ def check_repeat(table_name, key, value):
     return True
 
 
-def cut_str(s: str):
-    tp = s.split()
-    result = []
-    if len(tp) == 1:
-        start1 = 0
-        end1 = 12
-        start2 = 12
-        end2 = 24
-        if len(tp[0]) < 12:
-            end1 = len(tp[0])
-            start2 = 0
-            end2 = len(tp[0])
-        elif len(tp[0]) < 24:
-            end2 = len(tp[0])
-        result.append(tp[0][start1:end1])
-        result.append(tp[0][start2:end2])
-    else:
-        end1 = 12
-        end2 = 12
-        if len(tp[0]) < 12:
-            end1 = len(tp[0])
-        if len(tp[1]) < 12:
-            end2 = len(tp[1])
-        result.append(tp[0][:end1])
-        result.append(tp[1][:end2])
-    return tuple(result)
+def get_questions():
+    db = DB()
+    return list(db.get_table('question_bank'))
+
 
 class QuestionBank:
     _instance = None
@@ -45,6 +24,8 @@ class QuestionBank:
     def __init__(self):
         if not QuestionBank._flag:
             self.name = 'question_bank'
+            self.questions = get_questions()
+            self.last_question_id = self.questions[len(self.questions) - 1][9]
             QuestionBank._flag = True
 
     def __new__(cls, *args, **kwargs):
@@ -57,6 +38,8 @@ class QuestionBank:
             return False
         db = DB()
         db.insert(self.name, self.key_list, question_and_answer + (provider,))
+        self.last_question_id = self.last_question_id + 1
+        self.questions.append(db.get_one_by_int(self.name, 'question_id', self.last_question_id))
         return True
 
     def add_select_question(self, question_and_answer, select_question, provider):
@@ -65,6 +48,8 @@ class QuestionBank:
         key_list = ('question', 'answer', 'type', 'select_question', 'A', 'B', 'C', 'D', 'provider')
         db = DB()
         db.insert(self.name, key_list, question_and_answer + select_question + (provider,))
+        self.last_question_id = self.last_question_id + 1
+        self.questions.append(db.get_one_by_int(self.name, 'question_id', self.last_question_id))
         return True
 
     def get_question(self, question_id):
@@ -79,31 +64,20 @@ class QuestionBank:
         return result[0][3]
 
     def search_question(self, s):
-        tp = cut_str(s)
-        if len(tp) < 2:
-            return ()
-        db = DB()
-        result = db.fuzzy_search(self.name, 'question', tp[0])
-        if len(result) == 1:
-            return result[0]
-        elif len(result) == 0:
-            result = db.fuzzy_search(self.name, 'question', tp[1])
-            if len(result) == 0:
-                return ()
-            else:
-                return result[0]
-        else:
-            result2 = db.fuzzy_double_search(self.name, 'question', tp)
-            if len(result2) == 0:
-                return result[0]
-            else:
-                return result2[0]
+        d_min = Levenshtein.distance(s, self.questions[0][0])
+        place = 0
+        for i in range(1, len(self.questions)):
+            d = Levenshtein.distance(s, self.questions[i][0])
+            if d < d_min:
+                d_min = d
+                place = i
+        return (self.questions[place], d_min)
 
     def get_questions(self, num):
         if num == 0:
             return []
         db = DB()
-        questions = db.get_table(self.name)
+        questions = self.questions
         random_list = random.sample(range(0, len(questions)), num)
         result = []
         for i in random_list:
@@ -117,7 +91,7 @@ class QuestionBank:
         return result
 
     def check_repeat(self, question):
-        db = DB()
-        if len(self.search_question(question)) == 0:
+        search_result = self.search_question(question)
+        if search_result[1] > 5:
             return False
         return True
