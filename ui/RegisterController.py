@@ -72,7 +72,6 @@ class RegisterForm_controller(QMainWindow):
 
 
 def checkUserNameAlive(name: str) -> bool:
-	return False
 	return u.hasname(name)
 
 
