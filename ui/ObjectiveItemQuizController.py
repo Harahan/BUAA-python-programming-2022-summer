@@ -91,7 +91,7 @@ class ObjectiveItemQuiz_controller(QtWidgets.QMainWindow):
 				if self.answer & (1 << i) != 0 and ans & (1 << i) != 0:
 					mrs += 1
 			x = mrs / self.cnt * 10
-			self.ui.scoreLabel.setText('得分：' + str(x) + '/10')
+			self.ui.scoreLabel.setText('得分：' + str(round(x, 1)) + '/10')
 			addToQuizHistoryQuestion(self.question, self.choices, self.answer, ans, x, self.question_id)
 			if x != 10:
 				addToWrongQuestion(self.question, self.choices, self.answer, ans, self.question_id)

@@ -37,15 +37,16 @@ class PreForQuiz_controller(QtWidgets.QMainWindow):
 		self.MainReshow = MainReshow
 
 	def _check(self):
-		flag, tag = 0, 0
+		flag, tag, tot = 0, 0, 0
 		for k in range(5):
 			p = self.choices[k].text()
 			if re.match(self.digit, p):
 				if 0 <= int(p) <= self.numbers[k]:
 					flag += 1
+					tot += int(p)
 					if int(p) == 0:
 						tag += 1
-		if flag == 5 and tag != 5:
+		if flag == 5 and tag != 5 and tot <= 100:
 			return True
 		else:
 			return False
@@ -106,13 +107,13 @@ class PreForQuiz_controller(QtWidgets.QMainWindow):
 												   int(self.choices[2].text()), int(self.choices[3].text()),
 																				int(self.choices[4].text())))
 				else:
-					self.ui.tipslabel.setText('请对测试所选题目进行正确输入！')
+					self.ui.tipslabel.setText('请对测试所选题目进行正确输入！且一次最多选择100题')
 			else:
 				p = self.choices[4].text()
-				if re.match(self.digit, p) and 0 < int(p) <= self.numbers[4]:
+				if re.match(self.digit, p) and 0 < int(p) <= min(self.numbers[4], 100):
 					self.quiz(getQuestionAndAnswer(0, 0, 0, 0, int(p)))
 				else:
-					self.ui.tipslabel.setText('请对测试所选题目进行正确输入！')
+					self.ui.tipslabel.setText('请对测试所选题目进行正确输入！且一次最多选择100题')
 
 	def showEvent(self, a0: QtGui.QShowEvent):
 		self.numbers = getQuestionNumber()

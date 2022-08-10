@@ -19,7 +19,7 @@
      <x>70</x>
      <y>60</y>
      <width>101</width>
-     <height>41</height>
+     <height>31</height>
     </rect>
    </property>
    <property name="font">
@@ -279,9 +279,9 @@
   <widget class="QLabel" name="tipslabel">
    <property name="geometry">
     <rect>
-     <x>280</x>
+     <x>190</x>
      <y>20</y>
-     <width>311</width>
+     <width>461</width>
      <height>20</height>
     </rect>
    </property>
@@ -290,7 +290,7 @@
 </string>
    </property>
    <property name="text">
-    <string>所选题目数量不得超过题库数量！</string>
+    <string>所选题目数量不得超过题库数量！且一次最多选择100题</string>
    </property>
   </widget>
   <widget class="QLabel" name="userNamelabel">

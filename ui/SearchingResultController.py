@@ -68,6 +68,7 @@ class SearchingResult_controller(QtWidgets.QMainWindow):
 			self.ui.answerTextEdit.setText(self.questionAndAnswer[1])
 			addToSearchHistoryQuestion(self.questionAndAnswer)
 		else:
+			self.ui.answerTextEdit.clear()
 			self.ui.answerTextEdit.setStyleSheet("background-image:url(../img/notFound.png)")
 			self.ui.addToFavoriteQuestionButton.setDisabled(True)
 			self.ui.addToWrongQuestionButton.setDisabled(True)

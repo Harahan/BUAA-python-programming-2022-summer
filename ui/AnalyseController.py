@@ -25,6 +25,7 @@ class Analyse_controller(QtWidgets.QMainWindow):
 	
 	def _draw(self):
 		x, y = [], getQuestionPoints(self.question_id)
+		y.reverse()
 		for i in range(1, len(y) + 1):
 			x.append(i)
 		plt.plot(x, y, color='green', label='All previous scores', linewidth=2, marker='o', markerfacecolor='black', markersize=4)
@@ -67,7 +68,7 @@ class Analyse_controller(QtWidgets.QMainWindow):
 		self.ui.userNamelabel.setText("用户名：" + self.userName)
 		self.ui.goBackButton.clicked.connect(self.goBackButtonClicked)
 		info = getQuestionInfor(self.question_id, self.table_id)
-		self.ui.scoreLineEdit.setText('暂无' if info[0] == -1 else str(info[0]))
+		self.ui.scoreLineEdit.setText('暂无' if info[0] == -1 else str(round(info[0], 1)))
 		self.ui.typeLineEdit.setText('暂无' if info[1] == '' else info[1])
 		self.ui.hishtoryCheckBox.setCheckState(Qt.Checked if info[2] else Qt.Unchecked)
 		self.ui.favoriteCheckBox.setCheckState(Qt.Checked if info[3] else Qt.Unchecked)
@@ -92,7 +93,7 @@ class Analyse_controller(QtWidgets.QMainWindow):
 		self.goBackToHistorySignal.emit()
 	
 
-def getQuestionInfor(question_id: int, table_id: int) -> (int, str, bool, bool, bool, bool, int, str):
+def getQuestionInfor(question_id: int, table_id: int) -> (float, str, bool, bool, bool, bool, int, str):
 	"""
 	:param question_id:
 	:param table_id:

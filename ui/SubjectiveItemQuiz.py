@@ -69,7 +69,7 @@ class Ui_SubjectiveItemQuizForm(object):
         self.writeTextEdit.setStyleSheet("font: 75 10pt \"Consolas\" rgb(241, 255, 235);")
         self.writeTextEdit.setObjectName("writeTextEdit")
         self.lineEdit = QtWidgets.QLineEdit(SubjectiveItemQuizForm)
-        self.lineEdit.setGeometry(QtCore.QRect(1010, 610, 61, 25))
+        self.lineEdit.setGeometry(QtCore.QRect(1010, 610, 61, 31))
         self.lineEdit.setStyleSheet("font: 75 10pt \"Consolas\" rgb(241, 255, 235);")
         self.lineEdit.setText("")
         self.lineEdit.setObjectName("lineEdit")

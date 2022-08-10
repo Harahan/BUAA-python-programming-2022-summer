@@ -13,7 +13,7 @@ class Ui_PreForQuizForm(object):
         PreForQuizForm.setObjectName("PreForQuizForm")
         PreForQuizForm.resize(894, 553)
         self.comboBox = QtWidgets.QComboBox(PreForQuizForm)
-        self.comboBox.setGeometry(QtCore.QRect(70, 60, 101, 41))
+        self.comboBox.setGeometry(QtCore.QRect(70, 60, 101, 31))
         font = QtGui.QFont()
         font.setFamily("Consolas")
         font.setPointSize(10)
@@ -88,7 +88,7 @@ class Ui_PreForQuizForm(object):
         self.confirmButton.setStyleSheet("font: 75 10pt \"Consolas\" rgb(241, 255, 235);")
         self.confirmButton.setObjectName("confirmButton")
         self.tipslabel = QtWidgets.QLabel(PreForQuizForm)
-        self.tipslabel.setGeometry(QtCore.QRect(280, 20, 311, 20))
+        self.tipslabel.setGeometry(QtCore.QRect(190, 20, 461, 20))
         self.tipslabel.setStyleSheet("font: 9pt \"Consolas\" rgb(255, 14, 30);\n"
 "")
         self.tipslabel.setObjectName("tipslabel")
@@ -114,6 +114,6 @@ class Ui_PreForQuizForm(object):
         self.reciteNumberLabel.setText(_translate("PreForQuizForm", "/0"))
         self.originNumberLabel.setText(_translate("PreForQuizForm", "/0"))
         self.confirmButton.setText(_translate("PreForQuizForm", "确定"))
-        self.tipslabel.setText(_translate("PreForQuizForm", "所选题目数量不得超过题库数量！"))
+        self.tipslabel.setText(_translate("PreForQuizForm", "所选题目数量不得超过题库数量！且一次最多选择100题"))
         self.userNamelabel.setText(_translate("PreForQuizForm", "用户名：蛤蛤蛤蛤蛤蛤"))
 
