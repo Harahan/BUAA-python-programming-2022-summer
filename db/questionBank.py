@@ -53,16 +53,19 @@ class QuestionBank:
         return cls._instance
 
     def add_question(self, question_and_answer, provider):
-        if check_repeat(self.name, 'question', question_and_answer[0]):
+        if self.check_repeat(question_and_answer[0]):
             return False
         db = DB()
         db.insert(self.name, self.key_list, question_and_answer + (provider,))
         return True
 
     def add_select_question(self, question_and_answer, select_question, provider):
+        if self.check_repeat(question_and_answer[0]):
+            return False
         key_list = ('question', 'answer', 'type', 'select_question', 'A', 'B', 'C', 'D', 'provider')
         db = DB()
         db.insert(self.name, key_list, question_and_answer + select_question + (provider,))
+        return True
 
     def get_question(self, question_id):
         db = DB()
@@ -112,3 +115,9 @@ class QuestionBank:
                 to_add = (questions[i][2], questions[i][0], questions[i][1], questions[i][9])
                 result.append(to_add)
         return result
+
+    def check_repeat(self, question):
+        db = DB()
+        if len(self.search_question(question)) == 0:
+            return False
+        return True

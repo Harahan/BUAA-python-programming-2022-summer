@@ -129,8 +129,7 @@ def addToQuestionBank(questionAndAnswer: (str, str, str)) -> bool:  # Q, A, type
 			select_question = checker.process(questionAndAnswer[0])
 			answer = checker.get_ans(checker.ans_process(questionAndAnswer[1]))
 			questionAndAnswer = (questionAndAnswer[0], answer, questionAndAnswer[2])
-			qb.add_select_question(questionAndAnswer, select_question, provider)
-			return True
+			return qb.add_select_question(questionAndAnswer, select_question, provider)
 		else:
 			return qb.add_question(questionAndAnswer[0:2] + ('',), provider)
 	else:

@@ -3,14 +3,9 @@ import re
 
 def process(original):
     splitQA = re.search(r'(.*)A.(.*)B.(.*)C.(.*)D.(.*)', original)
-    ops = {}
+    ops = ()
     if splitQA:
-        ops['question'] = splitQA[1]
-        ops['opA'] = splitQA[2]
-        ops['opB'] = splitQA[3]
-        ops['opC'] = splitQA[4]
-        ops['opD'] = splitQA[5]
-    print(ops)
+        ops = (splitQA[1], splitQA[2], splitQA[3], splitQA[4], splitQA[5])
     return ops
 
 
