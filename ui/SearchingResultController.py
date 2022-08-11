@@ -3,6 +3,7 @@ from PyQt5.Qt import *
 
 from db.user import User
 from ui.SearchingResult import Ui_SearchingResultForm
+from ui.AutoGenerateAnswerController import AutoGenerateAnswer_controller
 import re
 
 
@@ -10,13 +11,14 @@ class SearchingResult_controller(QtWidgets.QMainWindow):
 	goBackToMainSignal = pyqtSignal(int)
 	digit = re.compile(r'^\d+$')
 	
-	def __init__(self, userName: str, userPassword: str, questionAndAnswer: (str, str, int)):
+	def __init__(self, userName: str, userPassword: str, questionAndAnswer: (str, str, int), autoGenerateAnswer_ui: AutoGenerateAnswer_controller):
 		super(SearchingResult_controller, self).__init__()
 		self.ui = Ui_SearchingResultForm()
 		self.ui.setupUi(self)
 		self.userName = userName
 		self.userPassword = userPassword
 		self.questionAndAnswer = questionAndAnswer
+		self.autoGenerateAnswer_ui = autoGenerateAnswer_ui
 		self.setup_control()
 	
 	def _initParameter(self):
@@ -33,6 +35,7 @@ class SearchingResult_controller(QtWidgets.QMainWindow):
 		self.ui.addToReciteQuestionButton.clicked.connect(self.addToReciteQuestionButtonClicked)
 		self.ui.addToWrongQuestionButton.clicked.connect(self.addToWrongQuestionButtonClicked)
 		self.ui.goBackButton.clicked.connect(self.goBackButtonClicked)
+		self.ui.pushButton.clicked.connect(self.pushButtonClicked)
 	
 	def addToFavoriteQuestionButtonClicked(self):
 		if addToFavoriteQuestion(self.questionAndAnswer):
@@ -55,9 +58,15 @@ class SearchingResult_controller(QtWidgets.QMainWindow):
 	def goBackButtonClicked(self):
 		self.goBackToMainSignal.emit(4)
 		self._initParameter()
+		
+	def pushButtonClicked(self):
+		self.hide()
+		self.autoGenerateAnswer_ui.setQuestion(self.questionAndAnswer[0])
+		self.autoGenerateAnswer_ui.show()
 	
 	def showEvent(self, a0: QtGui.QShowEvent):
 		self.ui.scheduleTipsLabel.clear()
+		self.ui.pushButton.hide()
 		self.ui.addToFavoriteQuestionButton.setDisabled(False)
 		self.ui.addToWrongQuestionButton.setDisabled(False)
 		self.ui.addToReciteQuestionButton.setDisabled(False)
@@ -73,7 +82,8 @@ class SearchingResult_controller(QtWidgets.QMainWindow):
 			self.ui.addToFavoriteQuestionButton.setDisabled(True)
 			self.ui.addToWrongQuestionButton.setDisabled(True)
 			self.ui.addToReciteQuestionButton.setDisabled(True)
-			self.ui.scheduleTipsLabel.setText("什么也没搜到，再试一次吧。。。温馨提示：我们不会保留这种无意义的搜索历史！")
+			self.ui.pushButton.show()
+			self.ui.scheduleTipsLabel.setText("什么也没搜到，选择自动生成答案吧（注：需提供一段与答案有关的参考文本与原问题）")
 		a0.accept()
 
 

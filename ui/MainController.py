@@ -20,6 +20,7 @@ from ui.PreForQuizController import PreForQuiz_controller
 from ui.QuizResultController import QuizResult_controller
 from ui.TerisResultController import TetrisResult_controller
 from OCR_and_PDF.fileProcess import getContent
+from ui.AutoGenerateAnswerController import AutoGenerateAnswer_controller
 
 _debug = False
 
@@ -40,7 +41,8 @@ class Main_controller(QtWidgets.QMainWindow):
 		self.wrong_ui = Wrong_controller(userName, userPassword)
 		self.favorite_ui = Favorite_controller(userName, userPassword)
 		self.recite_ui = Recite_controller(userName, userPassword)
-		self.searchingResult_ui = SearchingResult_controller(userName, userPassword, '')
+		self.autoGenerateQuestion_ui = AutoGenerateAnswer_controller(userName, userPassword, '')
+		self.searchingResult_ui = SearchingResult_controller(userName, userPassword, '', self.autoGenerateQuestion_ui)
 		self.writeOff_ui = WriteOffController(userName, userPassword)
 		self.contribute_ui = Contribute_controller(userName, userPassword)
 		self.tetrisResult_ui = TetrisResult_controller(userName, userPassword)
@@ -71,6 +73,8 @@ class Main_controller(QtWidgets.QMainWindow):
 			self.tetrisResult_ui.hide()
 		elif sel == 10:
 			pass  # quiz return
+		elif sel == 11:
+			self.autoGenerateQuestion_ui.hide()
 		self.show()
 		
 	def _hide(self, sel: int):
@@ -109,6 +113,7 @@ class Main_controller(QtWidgets.QMainWindow):
 		self.preForQuiz_ui.goBackToMainSignal.connect(self._reshow)
 		self.quizResult_ui.goBackToMainSignal.connect(self._reshow)
 		self.tetrisResult_ui.goBackToMainSignal.connect(self._reshow)
+		self.autoGenerateQuestion_ui.goBackToMainSignal.connect(self._reshow)
 		
 		self.ui.favoriteQuestionButton.clicked.connect(self.favoriteQuestionButtonClicked)
 		self.ui.reciteQuestionButton.clicked.connect(self.reciteQuestionButtonClicked)

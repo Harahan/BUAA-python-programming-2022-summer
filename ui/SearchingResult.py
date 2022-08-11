@@ -47,7 +47,7 @@ class Ui_SearchingResultForm(object):
         self.label.setText("")
         self.label.setObjectName("label")
         self.scheduleTipsLabel = QtWidgets.QLabel(SearchingResultForm)
-        self.scheduleTipsLabel.setGeometry(QtCore.QRect(280, 30, 681, 31))
+        self.scheduleTipsLabel.setGeometry(QtCore.QRect(250, 30, 741, 31))
         self.scheduleTipsLabel.setStyleSheet("font: 9pt \"Consolas\" rgb(255, 14, 30);")
         self.scheduleTipsLabel.setObjectName("scheduleTipsLabel")
         self.answerTextEdit = QtWidgets.QTextEdit(SearchingResultForm)
@@ -62,6 +62,10 @@ class Ui_SearchingResultForm(object):
         self.answerLabel.setGeometry(QtCore.QRect(150, 270, 101, 18))
         self.answerLabel.setStyleSheet("font: 75 10pt \"Consolas\" rgb(241, 255, 235);")
         self.answerLabel.setObjectName("answerLabel")
+        self.pushButton = QtWidgets.QPushButton(SearchingResultForm)
+        self.pushButton.setGeometry(QtCore.QRect(411, 500, 351, 34))
+        self.pushButton.setStyleSheet("font: 75 10pt \"Consolas\" rgb(241, 255, 235);")
+        self.pushButton.setObjectName("pushButton")
 
         self.retranslateUi(SearchingResultForm)
         QtCore.QMetaObject.connectSlotsByName(SearchingResultForm)
@@ -79,7 +83,7 @@ class Ui_SearchingResultForm(object):
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
         self.goBackButton.setText(_translate("SearchingResultForm", "返回"))
         self.userNamelabel.setText(_translate("SearchingResultForm", "用户名：蛤蛤蛤蛤蛤蛤"))
-        self.scheduleTipsLabel.setText(_translate("SearchingResultForm", "什么也没搜到，再试一次吧。。。温馨提示：我们不会保留这种无意义的搜索历史！"))
+        self.scheduleTipsLabel.setText(_translate("SearchingResultForm", "什么也没搜到，选择自动生成答案吧（注：需提供一段与答案有关的参考文本与原问题）"))
         self.answerTextEdit.setHtml(_translate("SearchingResultForm", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -87,4 +91,5 @@ class Ui_SearchingResultForm(object):
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
         self.questionLabel.setText(_translate("SearchingResultForm", "搜索问题："))
         self.answerLabel.setText(_translate("SearchingResultForm", "搜索结果："))
+        self.pushButton.setText(_translate("SearchingResultForm", "自动生成答案"))
 

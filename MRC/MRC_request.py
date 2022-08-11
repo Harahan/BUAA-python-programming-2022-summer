@@ -1,3 +1,5 @@
+import os
+
 import torch
 from transformers import AutoTokenizer, AutoModelForQuestionAnswering
 
@@ -29,7 +31,7 @@ def extract_ans(question, context, tokenizer, model):
 def MRC_function(question, content):
     #模型地址，放置已经训练好的模型
     #todo 把模型位置设置好
-    model_path = "./model"
+    model_path = "../MRC/model"
     #加载分词器
     tokenizer = load_tokenizer(model_path)
     #加载模型

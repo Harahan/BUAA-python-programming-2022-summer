@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>SearchingResultForm</class>
- <widget class="QWidget" name="SearchingResultForm">
+ <class>AutoGenerateAnswerForm</class>
+ <widget class="QWidget" name="AutoGenerateAnswerForm">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,57 +11,15 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>小航搜题-搜索结果</string>
+   <string>小航搜题-自动生成答案</string>
   </property>
-  <widget class="QWidget" name="horizontalLayoutWidget">
+  <widget class="QTextEdit" name="refTxtTextEdit">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>520</y>
-     <width>1091</width>
-     <height>171</height>
-    </rect>
-   </property>
-   <layout class="QHBoxLayout" name="horizontalLayoutForButtons">
-    <item>
-     <widget class="QPushButton" name="addToFavoriteQuestionButton">
-      <property name="styleSheet">
-       <string notr="true">font: 75 10pt &quot;Consolas&quot; rgb(241, 255, 235);</string>
-      </property>
-      <property name="text">
-       <string>加入我喜欢的问题</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="addToReciteQuestionButton">
-      <property name="styleSheet">
-       <string notr="true">font: 75 10pt &quot;Consolas&quot; rgb(241, 255, 235);</string>
-      </property>
-      <property name="text">
-       <string>加入我的背题集</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="addToWrongQuestionButton">
-      <property name="styleSheet">
-       <string notr="true">font: 75 10pt &quot;Consolas&quot; rgb(241, 255, 235);</string>
-      </property>
-      <property name="text">
-       <string>加入我的错题本</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QTextEdit" name="questionTextEdit">
-   <property name="geometry">
-    <rect>
-     <x>150</x>
+     <x>240</x>
      <y>60</y>
-     <width>911</width>
-     <height>201</height>
+     <width>821</width>
+     <height>241</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -73,6 +31,22 @@
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Consolas'; font-size:10pt; font-weight:72; font-style:normal;&quot;&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="openFileButton">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>130</y>
+     <width>151</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 10pt &quot;Consolas&quot; rgb(241, 255, 235);</string>
+   </property>
+   <property name="text">
+    <string>上传文本</string>
    </property>
   </widget>
   <widget class="QPushButton" name="goBackButton">
@@ -123,9 +97,9 @@ p, li { white-space: pre-wrap; }
   <widget class="QLabel" name="scheduleTipsLabel">
    <property name="geometry">
     <rect>
-     <x>250</x>
+     <x>510</x>
      <y>30</y>
-     <width>741</width>
+     <width>301</width>
      <height>31</height>
     </rect>
    </property>
@@ -133,16 +107,16 @@ p, li { white-space: pre-wrap; }
     <string notr="true">font: 9pt &quot;Consolas&quot; rgb(255, 14, 30);</string>
    </property>
    <property name="text">
-    <string>什么也没搜到，选择自动生成答案吧（注：需提供一段与答案有关的参考文本与原问题）</string>
+    <string>已经到底了，没有别的记录了。。。</string>
    </property>
   </widget>
-  <widget class="QTextEdit" name="answerTextEdit">
+  <widget class="QTextEdit" name="questionTextEdit">
    <property name="geometry">
     <rect>
-     <x>150</x>
-     <y>290</y>
-     <width>911</width>
-     <height>201</height>
+     <x>240</x>
+     <y>340</y>
+     <width>401</width>
+     <height>321</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -156,10 +130,10 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
-  <widget class="QLabel" name="questionLabel">
+  <widget class="QLabel" name="refTxtLabel">
    <property name="geometry">
     <rect>
-     <x>150</x>
+     <x>240</x>
      <y>40</y>
      <width>111</width>
      <height>18</height>
@@ -169,15 +143,15 @@ p, li { white-space: pre-wrap; }
     <string notr="true">font: 75 10pt &quot;Consolas&quot; rgb(241, 255, 235);</string>
    </property>
    <property name="text">
-    <string>搜索问题：</string>
+    <string>参考文本：</string>
    </property>
   </widget>
-  <widget class="QLabel" name="answerLabel">
+  <widget class="QLabel" name="questionLabel">
    <property name="geometry">
     <rect>
-     <x>150</x>
-     <y>270</y>
-     <width>101</width>
+     <x>240</x>
+     <y>310</y>
+     <width>111</width>
      <height>18</height>
     </rect>
    </property>
@@ -185,23 +159,59 @@ p, li { white-space: pre-wrap; }
     <string notr="true">font: 75 10pt &quot;Consolas&quot; rgb(241, 255, 235);</string>
    </property>
    <property name="text">
-    <string>搜索结果：</string>
+    <string>问题：</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QTextEdit" name="AnswerTextEdit">
    <property name="geometry">
     <rect>
-     <x>411</x>
-     <y>500</y>
-     <width>351</width>
-     <height>34</height>
+     <x>660</x>
+     <y>340</y>
+     <width>401</width>
+     <height>321</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 10pt &quot;Consolas&quot; rgb(241, 255, 235);</string>
+   </property>
+   <property name="html">
+    <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Consolas'; font-size:10pt; font-weight:72; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="AnswerLabel">
+   <property name="geometry">
+    <rect>
+     <x>660</x>
+     <y>310</y>
+     <width>141</width>
+     <height>18</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">font: 75 10pt &quot;Consolas&quot; rgb(241, 255, 235);</string>
    </property>
    <property name="text">
-    <string>自动生成答案</string>
+    <string>参考答案：</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="confirmButton">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>370</y>
+     <width>151</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 10pt &quot;Consolas&quot; rgb(241, 255, 235);</string>
+   </property>
+   <property name="text">
+    <string>确认</string>
    </property>
   </widget>
  </widget>
