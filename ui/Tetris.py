@@ -15,6 +15,7 @@ class Tetris(QMainWindow):
 		super().__init__()
 		self.initUI()
 		self.tetrisResult_ui = tetrisResult_ui
+		self.totLines = 0
 
 	def initUI(self):
 		self.tboard = Board(self)

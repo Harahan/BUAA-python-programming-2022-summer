@@ -54,7 +54,8 @@ class PreForQuiz_controller(QtWidgets.QMainWindow):
 	def _decide(self, val):
 		if val == '自选':
 			for i in range(5):
-				self.choices[i].setText('0')
+				if not re.match(self.digit, self.choices[i].text()):
+					self.choices[i].setText('0')
 			for i in range(5):
 				self.choices[i].setDisabled(False)
 		elif val == '随机':
@@ -117,6 +118,8 @@ class PreForQuiz_controller(QtWidgets.QMainWindow):
 
 	def showEvent(self, a0: QtGui.QShowEvent):
 		self.numbers = getQuestionNumber()
+		for i in range(5):
+			self.choices[i].setDisabled(False)
 		self.ui.historyNumberLabel.setText('/' + str(self.numbers[0]))
 		self.ui.favoriteNumberLabel.setText('/' + str(self.numbers[1]))
 		self.ui.wrongNumberLabel.setText('/' + str(self.numbers[2]))
