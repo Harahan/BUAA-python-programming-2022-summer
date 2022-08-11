@@ -64,14 +64,25 @@ class QuestionBank:
         return result[0][3]
 
     def search_question(self, s):
-        d_min = Levenshtein.distance(s, self.questions[0][0])
+        d_min1 = Levenshtein.distance(s, self.questions[0][0])
         place = 0
         for i in range(1, len(self.questions)):
             d = Levenshtein.distance(s, self.questions[i][0])
-            if d < d_min:
-                d_min = d
+            if d < d_min1:
+                d_min1 = d
                 place = i
-        return (self.questions[place], d_min)
+        result1 = (self.questions[place], d_min1)
+        d_min2 = Levenshtein.distance(s, self.questions[0][3])
+        place = 0
+        for i in range(1, len(self.questions)):
+            d = Levenshtein.distance(s, self.questions[i][3])
+            if d < d_min2:
+                d_min2 = d
+                place = i
+        result2 = (self.questions[place], d_min2)
+        if result1[1] > result2[1]:
+            return result2
+        return result1
 
     def get_questions(self, num):
         if num == 0:
