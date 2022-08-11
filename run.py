@@ -9,6 +9,7 @@ from PyQt5.QtWidgets import QApplication
 from qt_material import apply_stylesheet
 import db.initial
 from db.questionBank import QuestionBank
+import db.DB
 
 
 def runGui():
@@ -21,8 +22,7 @@ def runGui():
 
 
 if __name__ == "__main__":
-	# db.initial.destroy_database()
-	db.initial.initial()
+	db.DB.data_path = db.initial.initial()
 	fileProcess.OCR_reader = easyocr.Reader(['ch_sim', 'en'])
 	qb = QuestionBank()
 	runGui()

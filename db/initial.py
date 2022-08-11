@@ -1,30 +1,39 @@
-import pymysql
+import os.path
+
 import sqlite3
 
 
+def get_data_path(name):
+    this_dir = os.path.dirname(__file__)
+    result = this_dir + '_dir/' + name + '.db'
+    return result
 
-connect = pymysql.connect(host='127.0.0.1',
-                          port=3306,
-                          user='root',
-                          password='123456',  # your mysql password
-                          charset='utf8',
-                          autocommit=True)
-cursor = connect.cursor()
+
+def get_data_dir_path(name):
+    this_dir = os.path.dirname(__file__)
+    result = this_dir + '_dir'
+    return result
+
+
+def get_base():
+    this_dir = os.path.dirname(__file__)
+    result = this_dir + '_data/小航搜题.db'
+    return result
+
 
 def initial():
     database_name = '小航搜题'  #数据库名
-    sql = "show databases like '" + database_name + "'"
-    cursor.execute(sql)
-    result = cursor.fetchall()
-    if len(result) == 0:
-        sql = 'create database %s default charset utf8' % database_name
-        cursor.execute(sql)
-        sql = 'use %s' % database_name
-        cursor.execute(sql)
+    data_path = get_data_path(database_name)
+    data_dir_path = get_data_dir_path(database_name)
+    if not os.path.exists(data_dir_path):
+        os.makedirs(data_dir_path)         # 创建路径
+    if not os.path.exists(data_path):
+        connect = sqlite3.connect(data_path)
+        cursor = connect.cursor()
         #设置题库表单
         sql = 'CREATE TABLE question_bank(' \
-              'question text(1024) not null, ' \
-              'answer text(512) not null, ' \
+              'question varchar(1024) not null, ' \
+              'answer varchar(512) not null, ' \
               "type varchar(20) not null DEFAULT '', " \
               "select_question varchar(512) not null DEFAULT '', " \
               "A varchar(256) not null DEFAULT '', " \
@@ -32,7 +41,7 @@ def initial():
               "C varchar(256) not null DEFAULT '', " \
               "D varchar(256) not null DEFAULT '', " \
               "provider varchar(25) not null DEFAULT '', " \
-              "question_id int primary key not null auto_increment)"
+              "question_id integer PRIMARY KEY autoincrement)"
         cursor.execute(sql)
         #设置用户表单
         sql = 'CREATE TABLE user(name varchar(25) primary key  not null, ' \
@@ -40,27 +49,16 @@ def initial():
               'highest_score int not null DEFAULT 0)'
         cursor.execute(sql)
         #载入题库
-        add_question_bank()
+        add_question_bank(connect, cursor)
+        connect.commit()
+    return data_path
 
 
 def destroy_database():
-    database_name = '小航搜题'  #数据库名
-    connect = pymysql.connect(host='127.0.0.1',
-                              port=3306,
-                              user='root',
-                              password='123456',
-                              charset='utf8',
-                              autocommit=True)
-    cursor = connect.cursor()
-    sql = 'drop database %s' % database_name
-    cursor.execute(sql)
-
-
-def get_value_str(value_list):
-    if len(value_list) > 1:
-        return str(value_list)
-    else:
-        return str(value_list)[:-2] + ')'
+    database_name = '小航搜题'  # 数据库名
+    data_path = get_data_path(database_name)
+    if os.path.exists(data_path):
+        os.remove(data_path)
 
 
 def get_key_str(key_list):
@@ -72,32 +70,33 @@ def get_key_str(key_list):
 
 
 def get_table(table_name):
-    conn = sqlite3.connect('questions.db')
+    conn = sqlite3.connect(get_base())
     cur = conn.cursor()
-    sql = "SELECT * FROM %s where IMAGENUM is ''" % table_name
+    sql = "SELECT * FROM %s" % table_name
     cur.execute(sql)
     return cur.fetchall()
 
 
 def get_question(t):
-    s = t[0] + '\nA.' + t[1] + '\nB.' + t[2] + '\nC.' + t[3] + '\nD.' + t[4]
+    s = t[0] + '\n' + 'A.' + t[1] + '\n' + 'B.' + t[2] + '\n' + 'C.' + t[3] + '\n' + 'D.' + t[4]
     return s
 
 
-def add_question_bank():
+def add_question_bank(connect, cursor):
     key_list = ('question', 'answer', 'type', 'select_question', 'A', 'B', 'C', 'D', 'provider')
-    t1 = get_table('art_questions')
-    t2 = get_table('science_questions')
-    for t in t1 + t2:
-        question = get_question(t[1:6])
-        answer = t[7]
-        type = '客观题'
-        select_question = t[1]
-        A = t[2]
-        B = t[3]
-        C = t[4]
-        D = t[5]
-        provider = '原始题库'
-        value_list = (question, answer, type, select_question, A, B, C, D, provider)
-        sql = 'INSERT INTO %s %s VALUES %s' % ('question_bank', get_key_str(key_list), get_value_str(value_list))
+    t1 = get_table('question_bank')
+    for t in t1:
+        question = t[0]
+        answer = t[1]
+        type = t[2]
+        select_question = t[3]
+        A = t[4]
+        B = t[5]
+        C = t[6]
+        D = t[7]
+        provider = t[8]
+        value_str = "('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')" %\
+                    (question, answer, type, select_question, A, B, C, D, provider)
+        sql = 'INSERT INTO %s %s VALUES %s' % ('question_bank', get_key_str(key_list), value_str)
         cursor.execute(sql)
+        connect.commit()

@@ -26,12 +26,12 @@ class User:
             self.name = ''
             self.table_list = ('_like', '_recite', '_wrong', '_history')
             self.like_recite_key = ('question_id', 'table_id')
-            self.like_recite_type = ('int not null', 'int primary key not null auto_increment')
+            self.like_recite_type = ('int not null', 'integer primary key autoincrement')
             self.history_key = ('question_id', 'table_id', 'answer', 'score', 'practice_time', 'history_type')
-            self.history_type = ('int not null', 'int primary key not null auto_increment', "varchar(512) not null DEFAULT ''",
+            self.history_type = ('int not null', 'integer primary key autoincrement', "varchar(512) not null DEFAULT ''",
                                  'float not null DEFAULT -1', 'int not null DEFAULT 0', 'varchar(20) not null')
             self.wrong_key = ('question_id', 'table_id', 'last_answer')
-            self.wrong_type = ('int not null', 'int primary key not null auto_increment', "varchar(512) not null DEFAULT ''")
+            self.wrong_type = ('int not null', 'integer primary key autoincrement', "varchar(512) not null DEFAULT ''")
             self.user_key = ('name', 'password')
             User._flag = True
 
@@ -46,7 +46,6 @@ class User:
         else:
             value = (name, password)
             db = DB()
-            db.insert('user', self.user_key, value)
             for i in range(len(self.table_list)):
                 table_name = name + self.table_list[i]
                 if i < 2:
@@ -55,6 +54,7 @@ class User:
                     db.create_table(table_name, self.wrong_key, self.wrong_type)
                 else:
                     db.create_table(table_name, self.history_key, self.history_type)
+            db.insert('user', self.user_key, value)
         return True
 
     def login(self, name, password):

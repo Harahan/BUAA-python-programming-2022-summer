@@ -1,4 +1,9 @@
-import pymysql
+import os
+
+import sqlite3
+
+
+data_path = ''
 
 
 def get_key_str(key_list):
@@ -10,25 +15,37 @@ def get_key_str(key_list):
 
 
 def get_value_str(value_list):
+    s = '('
     if len(value_list) > 1:
-        return str(value_list)
+        for value in value_list:
+            if type(value) is str:
+                s = s + "'%s', " % value
+            else:
+                s = s + '%s, ' % str(value)
+        s = s[:-2] + ')'
     else:
-        return str(value_list)[:-2] + ')'
+        value = value_list[0]
+        if type(value) is str:
+            s = "('%s')" % value
+        else:
+            s = '(%s)' % str(value)
+    return s
 
 
-class DB():
+def get_database_path(name):
+    this_dir = os.path.dirname(__file__)
+    result = this_dir + '_dir/' + name + '.db'
+    return result
+
+
+class DB:
     _instance = None
     _flag = False
 
     def __init__(self):
         if not DB._flag:
-            self.connect = pymysql.connect(host='127.0.0.1',
-                                           port=3306,
-                                           user='root',
-                                           password='123456', # your mysql password
-                                           charset='utf8',
-                                           database='小航搜题',
-                                           autocommit=True)
+            self.database_path = data_path
+            self.connect = sqlite3.connect(self.database_path)
             self.cursor = self.connect.cursor()
             DB._flag = True
 
@@ -44,10 +61,12 @@ class DB():
             sql = sql + ', ' + key_list[i] + ' ' + type_list[i]
         sql = sql + ')'
         self.cursor.execute(sql)
+        self.connect.commit()
 
     def insert(self, table_name, key_list, value_list):
         sql = 'INSERT INTO %s %s VALUES %s' % (table_name, get_key_str(key_list), get_value_str(value_list))
         self.cursor.execute(sql)
+        self.connect.commit()
 
     def get_table(self, table_name):
         sql = 'SELECT * FROM %s' % table_name
@@ -72,19 +91,21 @@ class DB():
     def find_key(self, table_name, key, value, _type):
         sql = ''
         if _type == 'str':
-            sql = "SELECT * FROM %s where %s= '%s'" % (table_name, key, value)
+            sql = "SELECT * FROM %s WHERE %s= '%s'" % (table_name, key, value)
         elif _type == 'int':
-            sql = "SELECT * FROM %s where %s= %d" % (table_name, key, value)
+            sql = "SELECT * FROM %s WHERE %s= %d" % (table_name, key, value)
         self.cursor.execute(sql)
         return self.cursor.fetchall()
 
     def delete_data(self, table_name, key, value):
         sql = "DELETE FROM %s where %s= '%s'" % (table_name, key, value)
         self.cursor.execute(sql)
+        self.connect.commit()
 
     def delete_table(self, table_name):
         sql = 'DROP TABLE IF EXISTS %s' % table_name
         self.cursor.execute(sql)
+        self.connect.commit()
 
     def get_union_table(self, table_name):
         table1_name = 'question_bank'
@@ -115,6 +136,7 @@ class DB():
     def update_one(self, table_name, find_key, find_key_value, key, new_value):
         sql = "UPDATE %s SET %s = '%s' WHERE %s = '%s'" % (table_name, key, new_value, find_key, find_key_value)
         self.cursor.execute(sql)
+        self.connect.commit()
 
     def get_max(self, table_name, key):
         sql = 'select max(%s) from %s' % (key, table_name)
