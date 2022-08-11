@@ -3,6 +3,8 @@ import os.path
 import sqlite3
 
 
+database_name = '小航搜题'  # 数据库名
+
 def get_data_path(name):
     this_dir = os.path.dirname(__file__)
     result = this_dir + '_dir/' + name + '.db'
@@ -17,12 +19,11 @@ def get_data_dir_path(name):
 
 def get_base():
     this_dir = os.path.dirname(__file__)
-    result = this_dir + '_data/小航搜题.db'
+    result = this_dir + '_data/questions.db'
     return result
 
 
 def initial():
-    database_name = '小航搜题'  #数据库名
     data_path = get_data_path(database_name)
     data_dir_path = get_data_dir_path(database_name)
     if not os.path.exists(data_dir_path):
@@ -48,14 +49,13 @@ def initial():
               'password varchar(25) not null, ' \
               'highest_score int not null DEFAULT 0)'
         cursor.execute(sql)
-        #载入题库
+        # 载入题库
         add_question_bank(connect, cursor)
         connect.commit()
     return data_path
 
 
 def destroy_database():
-    database_name = '小航搜题'  # 数据库名
     data_path = get_data_path(database_name)
     if os.path.exists(data_path):
         os.remove(data_path)
