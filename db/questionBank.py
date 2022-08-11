@@ -2,6 +2,7 @@ import random
 import db.question_process as process
 from db.DB import DB
 import Levenshtein
+from fuzzywuzzy import fuzz
 
 
 def check_repeat(table_name, key, value):
@@ -101,8 +102,19 @@ class QuestionBank:
                 result.append(to_add)
         return result
 
+    def new_search_question(self, s):
+        com_max = 0
+        place = -1
+        for i in range(len(self.questions)):
+            com = fuzz.partial_ratio(s, self.questions[i][0])
+            if com > com_max:
+                com_max = com
+                place = i
+        result = (self.questions[place], com_max)
+        return result
+
     def check_repeat(self, question):
-        search_result = self.search_question(question)
-        if search_result[1] > len(question) / 4:
+        search_result = self.new_search_question(question)
+        if search_result[1] < 50:
             return False
         return True
