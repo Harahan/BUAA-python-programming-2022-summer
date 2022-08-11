@@ -110,8 +110,19 @@ class DB:
     def get_union_table(self, table_name):
         table1_name = 'question_bank'
         table2_name = table_name
-        sql = 'SELECT * FROM %s RIGHT  JOIN %s ON %s.question_id= %s.question_id ' % \
-                    (table1_name, table2_name, table1_name, table2_name)
+        question = 'question_bank.question'
+        answer = 'question_bank.answer'
+        _type = 'question_bank.type'
+        select_question = 'question_bank.select_question'
+        A = 'question_bank.A'
+        B = 'question_bank.B'
+        C = 'question_bank.C'
+        D = 'question_bank.D'
+        provider = 'question_bank.provider'
+        question_id = '%s.question_id' % table2_name
+        key_list = (question, answer, _type, select_question, A, B, C, D, provider, question_id)
+        sql = 'SELECT %s FROM %s, %s WHERE %s.question_id= %s.question_id' % \
+              (get_key_str(key_list)[1:-1], table1_name, table2_name, table1_name, table2_name)
         self.cursor.execute(sql)
         return self.cursor.fetchall()
 
