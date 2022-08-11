@@ -103,6 +103,6 @@ class QuestionBank:
 
     def check_repeat(self, question):
         search_result = self.search_question(question)
-        if search_result[1] > 5:
+        if search_result[1] > len(question) / 4:
             return False
         return True

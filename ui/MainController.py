@@ -200,7 +200,7 @@ def getFileContent(filePath: str) -> str:  # jpg, png, txt, pdf, jpeg
 def getAnswer(question: str) -> (str, str, int):   # 可以返回一个空的字符串，如果没有
 	qb = QuestionBank()
 	result = qb.search_question(question)
-	if result[1] > 20:
+	if result[1] > len(question) / 3:
 		return ("", "", -1)
 	else:
 		return (result[0][0], result[0][1], result[0][9])
