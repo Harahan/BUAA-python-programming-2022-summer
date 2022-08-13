@@ -2,7 +2,7 @@ import re
 
 
 def process(original):
-    splitQA = re.search(r'(.*)A.(.*)B.(.*)C.(.*)D.(.*)', original)
+    splitQA = re.search(r'(.*)A.(.*)B.(.*)C.(.*)D.(.*)', original, re.DOTALL)
     ops = ()
     if splitQA:
         ops = (splitQA[1], splitQA[2], splitQA[3], splitQA[4], splitQA[5])
@@ -10,7 +10,7 @@ def process(original):
 
 
 def format_checker(original):
-    splitQA = re.search(r'(.*)A.(.*)B.(.*)C.(.*)D.(.*)', original)
+    splitQA = re.search(r'(.*)A.(.*)B.(.*)C.(.*)D.(.*)', original, re.DOTALL)
     if splitQA:
         return True
     return False
@@ -43,3 +43,4 @@ def get_ans(answers):
         for i in range(1, len(result)):
             s = s + '-' + result[i]
         return s
+    
