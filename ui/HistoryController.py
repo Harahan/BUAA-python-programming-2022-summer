@@ -20,6 +20,7 @@ class History_controller(QtWidgets.QMainWindow):
         self.userPassword = userPassword
         self.historyQuestionAndAnswer = getHistoryQuestionAndAnswer()
         self.currentPage = 1
+        self.flag = False
         self.setup_control()
 
     def _checkNumber(self, number: int):
@@ -58,6 +59,7 @@ class History_controller(QtWidgets.QMainWindow):
     def _reshow(self):
         self.historyAnalyze_ui: Analyse_controller
         self.historyAnalyze_ui.close()
+        self.flag = True
         self.show()
 
     def setup_control(self):
@@ -141,8 +143,11 @@ class History_controller(QtWidgets.QMainWindow):
             self._showQuestionAndAnswer(number)
 
     def showEvent(self, a0: QtGui.QShowEvent):
-        self.historyQuestionAndAnswer = getHistoryQuestionAndAnswer()
-        self._initParameter()
+        if not self.flag:
+            self.historyQuestionAndAnswer = getHistoryQuestionAndAnswer()
+            self._initParameter()
+        else:
+            self.flag = False
         a0.accept()
 
 
